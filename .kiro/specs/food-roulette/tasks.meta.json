@@ -1,0 +1,681 @@
+{
+  "pbtResults": {},
+  "executionHistory": {
+    "1.1 初始化 Vite + React + TypeScript 專案，安裝 Tailwind CSS、Vitest、fast-check、React Testing Library 等套件，設定 `tsconfig.json`、`vite.config.ts`、`tailwind.config.js` 及測試環境": [
+      {
+        "executionId": "3af53048-bac8-456d-9335-6acc47b208e3",
+        "chatSessionId": "sess_ffd862c3-2dad-4e04-a589-f95d6d7b8aab",
+        "timestamp": 1786374685568
+      },
+      {
+        "executionId": "3af53048-bac8-456d-9335-6acc47b208e3",
+        "chatSessionId": "sess_ffd862c3-2dad-4e04-a589-f95d6d7b8aab",
+        "timestamp": 1786374697841
+      },
+      {
+        "executionId": "3af53048-bac8-456d-9335-6acc47b208e3",
+        "chatSessionId": "sess_ffd862c3-2dad-4e04-a589-f95d6d7b8aab",
+        "timestamp": 1786375290830
+      }
+    ],
+    "1.2 建立 `src/types/index.ts`，定義所有核心 TypeScript 型別": [
+      {
+        "executionId": "3af53048-bac8-456d-9335-6acc47b208e3",
+        "chatSessionId": "sess_ffd862c3-2dad-4e04-a589-f95d6d7b8aab",
+        "timestamp": 1786374685711
+      },
+      {
+        "executionId": "3af53048-bac8-456d-9335-6acc47b208e3",
+        "chatSessionId": "sess_ffd862c3-2dad-4e04-a589-f95d6d7b8aab",
+        "timestamp": 1786375299336
+      },
+      {
+        "executionId": "3af53048-bac8-456d-9335-6acc47b208e3",
+        "chatSessionId": "sess_ffd862c3-2dad-4e04-a589-f95d6d7b8aab",
+        "timestamp": 1786375390221
+      }
+    ],
+    "1.3 建立 `src/utils/formatUtils.ts`，實作格式化工具函數": [
+      {
+        "executionId": "3af53048-bac8-456d-9335-6acc47b208e3",
+        "chatSessionId": "sess_ffd862c3-2dad-4e04-a589-f95d6d7b8aab",
+        "timestamp": 1786374685807
+      },
+      {
+        "executionId": "3af53048-bac8-456d-9335-6acc47b208e3",
+        "chatSessionId": "sess_ffd862c3-2dad-4e04-a589-f95d6d7b8aab",
+        "timestamp": 1786375395332
+      },
+      {
+        "executionId": "3af53048-bac8-456d-9335-6acc47b208e3",
+        "chatSessionId": "sess_ffd862c3-2dad-4e04-a589-f95d6d7b8aab",
+        "timestamp": 1786375506001
+      }
+    ],
+    "1.4 建立 `src/utils/validationUtils.ts`，實作表單驗證工具函數": [
+      {
+        "executionId": "3af53048-bac8-456d-9335-6acc47b208e3",
+        "chatSessionId": "sess_ffd862c3-2dad-4e04-a589-f95d6d7b8aab",
+        "timestamp": 1786374685864
+      },
+      {
+        "executionId": "3af53048-bac8-456d-9335-6acc47b208e3",
+        "chatSessionId": "sess_ffd862c3-2dad-4e04-a589-f95d6d7b8aab",
+        "timestamp": 1786375396123
+      },
+      {
+        "executionId": "3af53048-bac8-456d-9335-6acc47b208e3",
+        "chatSessionId": "sess_ffd862c3-2dad-4e04-a589-f95d6d7b8aab",
+        "timestamp": 1786375506984
+      }
+    ],
+    "1.5 建立 `src/utils/filterUtils.ts`，實作篩選邏輯": [
+      {
+        "executionId": "3af53048-bac8-456d-9335-6acc47b208e3",
+        "chatSessionId": "sess_ffd862c3-2dad-4e04-a589-f95d6d7b8aab",
+        "timestamp": 1786374685914
+      },
+      {
+        "executionId": "3af53048-bac8-456d-9335-6acc47b208e3",
+        "chatSessionId": "sess_ffd862c3-2dad-4e04-a589-f95d6d7b8aab",
+        "timestamp": 1786375397015
+      },
+      {
+        "executionId": "3af53048-bac8-456d-9335-6acc47b208e3",
+        "chatSessionId": "sess_ffd862c3-2dad-4e04-a589-f95d6d7b8aab",
+        "timestamp": 1786375507856
+      }
+    ],
+    "2.1 建立 `src/context/appReducer.ts`，實作所有 Reducer 邏輯": [
+      {
+        "executionId": "3af53048-bac8-456d-9335-6acc47b208e3",
+        "chatSessionId": "sess_ffd862c3-2dad-4e04-a589-f95d6d7b8aab",
+        "timestamp": 1786374685965
+      },
+      {
+        "executionId": "3af53048-bac8-456d-9335-6acc47b208e3",
+        "chatSessionId": "sess_ffd862c3-2dad-4e04-a589-f95d6d7b8aab",
+        "timestamp": 1786375513453
+      },
+      {
+        "executionId": "3af53048-bac8-456d-9335-6acc47b208e3",
+        "chatSessionId": "sess_ffd862c3-2dad-4e04-a589-f95d6d7b8aab",
+        "timestamp": 1786375738326
+      }
+    ],
+    "2.2 建立 `src/services/dataService.ts`，封裝 localStorage 讀寫": [
+      {
+        "executionId": "3af53048-bac8-456d-9335-6acc47b208e3",
+        "chatSessionId": "sess_ffd862c3-2dad-4e04-a589-f95d6d7b8aab",
+        "timestamp": 1786374686015
+      },
+      {
+        "executionId": "3af53048-bac8-456d-9335-6acc47b208e3",
+        "chatSessionId": "sess_ffd862c3-2dad-4e04-a589-f95d6d7b8aab",
+        "timestamp": 1786375514259
+      },
+      {
+        "executionId": "3af53048-bac8-456d-9335-6acc47b208e3",
+        "chatSessionId": "sess_ffd862c3-2dad-4e04-a589-f95d6d7b8aab",
+        "timestamp": 1786375739221
+      }
+    ],
+    "2.3 建立 `src/data/dummyData.ts`，定義獨立 Dummy Data 模組": [
+      {
+        "executionId": "3af53048-bac8-456d-9335-6acc47b208e3",
+        "chatSessionId": "sess_ffd862c3-2dad-4e04-a589-f95d6d7b8aab",
+        "timestamp": 1786374686065
+      },
+      {
+        "executionId": "3af53048-bac8-456d-9335-6acc47b208e3",
+        "chatSessionId": "sess_ffd862c3-2dad-4e04-a589-f95d6d7b8aab",
+        "timestamp": 1786375515131
+      },
+      {
+        "executionId": "3af53048-bac8-456d-9335-6acc47b208e3",
+        "chatSessionId": "sess_ffd862c3-2dad-4e04-a589-f95d6d7b8aab",
+        "timestamp": 1786375740330
+      }
+    ],
+    "2.4 建立 `src/context/AppContext.tsx`，實作 Context Provider": [
+      {
+        "executionId": "3af53048-bac8-456d-9335-6acc47b208e3",
+        "chatSessionId": "sess_ffd862c3-2dad-4e04-a589-f95d6d7b8aab",
+        "timestamp": 1786374686120
+      },
+      {
+        "executionId": "3af53048-bac8-456d-9335-6acc47b208e3",
+        "chatSessionId": "sess_ffd862c3-2dad-4e04-a589-f95d6d7b8aab",
+        "timestamp": 1786375779647
+      },
+      {
+        "executionId": "3af53048-bac8-456d-9335-6acc47b208e3",
+        "chatSessionId": "sess_ffd862c3-2dad-4e04-a589-f95d6d7b8aab",
+        "timestamp": 1786375855796
+      }
+    ],
+    "3. 檢查點 - 核心邏輯驗證": [
+      {
+        "executionId": "3af53048-bac8-456d-9335-6acc47b208e3",
+        "chatSessionId": "sess_ffd862c3-2dad-4e04-a589-f95d6d7b8aab",
+        "timestamp": 1786374686193
+      },
+      {
+        "executionId": "3af53048-bac8-456d-9335-6acc47b208e3",
+        "chatSessionId": "sess_ffd862c3-2dad-4e04-a589-f95d6d7b8aab",
+        "timestamp": 1786375870932
+      }
+    ],
+    "4.1 建立 `src/App.tsx` 根元件，整合 AppProvider 與頁面路由": [
+      {
+        "executionId": "3af53048-bac8-456d-9335-6acc47b208e3",
+        "chatSessionId": "sess_ffd862c3-2dad-4e04-a589-f95d6d7b8aab",
+        "timestamp": 1786374686241
+      },
+      {
+        "executionId": "3af53048-bac8-456d-9335-6acc47b208e3",
+        "chatSessionId": "sess_ffd862c3-2dad-4e04-a589-f95d6d7b8aab",
+        "timestamp": 1786375876627
+      },
+      {
+        "executionId": "3af53048-bac8-456d-9335-6acc47b208e3",
+        "chatSessionId": "sess_ffd862c3-2dad-4e04-a589-f95d6d7b8aab",
+        "timestamp": 1786376026462
+      }
+    ],
+    "4.2 建立 `src/components/layout/Layout.tsx` 主佈局框架": [
+      {
+        "executionId": "3af53048-bac8-456d-9335-6acc47b208e3",
+        "chatSessionId": "sess_ffd862c3-2dad-4e04-a589-f95d6d7b8aab",
+        "timestamp": 1786374686295
+      },
+      {
+        "executionId": "3af53048-bac8-456d-9335-6acc47b208e3",
+        "chatSessionId": "sess_ffd862c3-2dad-4e04-a589-f95d6d7b8aab",
+        "timestamp": 1786375877225
+      },
+      {
+        "executionId": "3af53048-bac8-456d-9335-6acc47b208e3",
+        "chatSessionId": "sess_ffd862c3-2dad-4e04-a589-f95d6d7b8aab",
+        "timestamp": 1786376027160
+      }
+    ],
+    "4.3 建立 `src/components/layout/NavigationBar.tsx` 導航列": [
+      {
+        "executionId": "3af53048-bac8-456d-9335-6acc47b208e3",
+        "chatSessionId": "sess_ffd862c3-2dad-4e04-a589-f95d6d7b8aab",
+        "timestamp": 1786374686347
+      },
+      {
+        "executionId": "3af53048-bac8-456d-9335-6acc47b208e3",
+        "chatSessionId": "sess_ffd862c3-2dad-4e04-a589-f95d6d7b8aab",
+        "timestamp": 1786375878044
+      },
+      {
+        "executionId": "3af53048-bac8-456d-9335-6acc47b208e3",
+        "chatSessionId": "sess_ffd862c3-2dad-4e04-a589-f95d6d7b8aab",
+        "timestamp": 1786376028237
+      }
+    ],
+    "4.4 建立 `src/components/shared/ConfirmDialog.tsx` 確認對話框": [
+      {
+        "executionId": "3af53048-bac8-456d-9335-6acc47b208e3",
+        "chatSessionId": "sess_ffd862c3-2dad-4e04-a589-f95d6d7b8aab",
+        "timestamp": 1786374686393
+      },
+      {
+        "executionId": "3af53048-bac8-456d-9335-6acc47b208e3",
+        "chatSessionId": "sess_ffd862c3-2dad-4e04-a589-f95d6d7b8aab",
+        "timestamp": 1786375878909
+      },
+      {
+        "executionId": "3af53048-bac8-456d-9335-6acc47b208e3",
+        "chatSessionId": "sess_ffd862c3-2dad-4e04-a589-f95d6d7b8aab",
+        "timestamp": 1786376028938
+      }
+    ],
+    "4.5 建立 `src/components/shared/TagBadge.tsx` 與 `src/components/shared/TagList.tsx`": [
+      {
+        "executionId": "3af53048-bac8-456d-9335-6acc47b208e3",
+        "chatSessionId": "sess_ffd862c3-2dad-4e04-a589-f95d6d7b8aab",
+        "timestamp": 1786374686449
+      },
+      {
+        "executionId": "3af53048-bac8-456d-9335-6acc47b208e3",
+        "chatSessionId": "sess_ffd862c3-2dad-4e04-a589-f95d6d7b8aab",
+        "timestamp": 1786375879868
+      },
+      {
+        "executionId": "3af53048-bac8-456d-9335-6acc47b208e3",
+        "chatSessionId": "sess_ffd862c3-2dad-4e04-a589-f95d6d7b8aab",
+        "timestamp": 1786376029881
+      }
+    ],
+    "5.1 建立 `src/components/restaurant/RestaurantCard.tsx` 餐廳卡片": [
+      {
+        "executionId": "3af53048-bac8-456d-9335-6acc47b208e3",
+        "chatSessionId": "sess_ffd862c3-2dad-4e04-a589-f95d6d7b8aab",
+        "timestamp": 1786374686501
+      },
+      {
+        "executionId": "3af53048-bac8-456d-9335-6acc47b208e3",
+        "chatSessionId": "sess_ffd862c3-2dad-4e04-a589-f95d6d7b8aab",
+        "timestamp": 1786376041194
+      },
+      {
+        "executionId": "3af53048-bac8-456d-9335-6acc47b208e3",
+        "chatSessionId": "sess_ffd862c3-2dad-4e04-a589-f95d6d7b8aab",
+        "timestamp": 1786376201762
+      }
+    ],
+    "5.2 建立 `src/components/restaurant/RestaurantDetail.tsx` 餐廳詳情": [
+      {
+        "executionId": "3af53048-bac8-456d-9335-6acc47b208e3",
+        "chatSessionId": "sess_ffd862c3-2dad-4e04-a589-f95d6d7b8aab",
+        "timestamp": 1786374686568
+      },
+      {
+        "executionId": "3af53048-bac8-456d-9335-6acc47b208e3",
+        "chatSessionId": "sess_ffd862c3-2dad-4e04-a589-f95d6d7b8aab",
+        "timestamp": 1786376042002
+      },
+      {
+        "executionId": "3af53048-bac8-456d-9335-6acc47b208e3",
+        "chatSessionId": "sess_ffd862c3-2dad-4e04-a589-f95d6d7b8aab",
+        "timestamp": 1786376202619
+      }
+    ],
+    "5.3 建立 `src/components/restaurant/EmptyState.tsx` 空狀態": [
+      {
+        "executionId": "3af53048-bac8-456d-9335-6acc47b208e3",
+        "chatSessionId": "sess_ffd862c3-2dad-4e04-a589-f95d6d7b8aab",
+        "timestamp": 1786374686615
+      },
+      {
+        "executionId": "3af53048-bac8-456d-9335-6acc47b208e3",
+        "chatSessionId": "sess_ffd862c3-2dad-4e04-a589-f95d6d7b8aab",
+        "timestamp": 1786376042839
+      },
+      {
+        "executionId": "3af53048-bac8-456d-9335-6acc47b208e3",
+        "chatSessionId": "sess_ffd862c3-2dad-4e04-a589-f95d6d7b8aab",
+        "timestamp": 1786376203238
+      }
+    ],
+    "5.4 建立 `src/components/restaurant/RestaurantListPage.tsx` 清單頁面": [
+      {
+        "executionId": "3af53048-bac8-456d-9335-6acc47b208e3",
+        "chatSessionId": "sess_ffd862c3-2dad-4e04-a589-f95d6d7b8aab",
+        "timestamp": 1786374686660
+      },
+      {
+        "executionId": "3af53048-bac8-456d-9335-6acc47b208e3",
+        "chatSessionId": "sess_ffd862c3-2dad-4e04-a589-f95d6d7b8aab",
+        "timestamp": 1786376327481
+      },
+      {
+        "executionId": "3af53048-bac8-456d-9335-6acc47b208e3",
+        "chatSessionId": "sess_ffd862c3-2dad-4e04-a589-f95d6d7b8aab",
+        "timestamp": 1786376465857
+      }
+    ],
+    "6.1 建立 `src/components/form/StarRating.tsx` 星級評分元件": [
+      {
+        "executionId": "3af53048-bac8-456d-9335-6acc47b208e3",
+        "chatSessionId": "sess_ffd862c3-2dad-4e04-a589-f95d6d7b8aab",
+        "timestamp": 1786374686711
+      },
+      {
+        "executionId": "3af53048-bac8-456d-9335-6acc47b208e3",
+        "chatSessionId": "sess_ffd862c3-2dad-4e04-a589-f95d6d7b8aab",
+        "timestamp": 1786376043633
+      },
+      {
+        "executionId": "3af53048-bac8-456d-9335-6acc47b208e3",
+        "chatSessionId": "sess_ffd862c3-2dad-4e04-a589-f95d6d7b8aab",
+        "timestamp": 1786376204099
+      }
+    ],
+    "6.2 建立 `src/components/form/DishInput.tsx` 推薦菜色輸入元件": [
+      {
+        "executionId": "3af53048-bac8-456d-9335-6acc47b208e3",
+        "chatSessionId": "sess_ffd862c3-2dad-4e04-a589-f95d6d7b8aab",
+        "timestamp": 1786374686760
+      },
+      {
+        "executionId": "3af53048-bac8-456d-9335-6acc47b208e3",
+        "chatSessionId": "sess_ffd862c3-2dad-4e04-a589-f95d6d7b8aab",
+        "timestamp": 1786376044548
+      },
+      {
+        "executionId": "3af53048-bac8-456d-9335-6acc47b208e3",
+        "chatSessionId": "sess_ffd862c3-2dad-4e04-a589-f95d6d7b8aab",
+        "timestamp": 1786376204993
+      }
+    ],
+    "6.3 建立 `src/components/form/TagInput.tsx` Tag 輸入元件": [
+      {
+        "executionId": "3af53048-bac8-456d-9335-6acc47b208e3",
+        "chatSessionId": "sess_ffd862c3-2dad-4e04-a589-f95d6d7b8aab",
+        "timestamp": 1786374686822
+      },
+      {
+        "executionId": "3af53048-bac8-456d-9335-6acc47b208e3",
+        "chatSessionId": "sess_ffd862c3-2dad-4e04-a589-f95d6d7b8aab",
+        "timestamp": 1786376215186
+      },
+      {
+        "executionId": "3af53048-bac8-456d-9335-6acc47b208e3",
+        "chatSessionId": "sess_ffd862c3-2dad-4e04-a589-f95d6d7b8aab",
+        "timestamp": 1786376319636
+      }
+    ],
+    "6.4 建立 `src/components/form/ReviewForm.tsx` 新增/編輯表單": [
+      {
+        "executionId": "3af53048-bac8-456d-9335-6acc47b208e3",
+        "chatSessionId": "sess_ffd862c3-2dad-4e04-a589-f95d6d7b8aab",
+        "timestamp": 1786374686888
+      },
+      {
+        "executionId": "3af53048-bac8-456d-9335-6acc47b208e3",
+        "chatSessionId": "sess_ffd862c3-2dad-4e04-a589-f95d6d7b8aab",
+        "timestamp": 1786376328319
+      },
+      {
+        "executionId": "3af53048-bac8-456d-9335-6acc47b208e3",
+        "chatSessionId": "sess_ffd862c3-2dad-4e04-a589-f95d6d7b8aab",
+        "timestamp": 1786376465209
+      }
+    ],
+    "7. 檢查點 - 清單與表單功能": [
+      {
+        "executionId": "3af53048-bac8-456d-9335-6acc47b208e3",
+        "chatSessionId": "sess_ffd862c3-2dad-4e04-a589-f95d6d7b8aab",
+        "timestamp": 1786374686930
+      },
+      {
+        "executionId": "3af53048-bac8-456d-9335-6acc47b208e3",
+        "chatSessionId": "sess_ffd862c3-2dad-4e04-a589-f95d6d7b8aab",
+        "timestamp": 1786376473585
+      }
+    ],
+    "8.1 建立 `src/hooks/useRouletteWheel.ts` 轉盤動畫邏輯 hook": [
+      {
+        "executionId": "3af53048-bac8-456d-9335-6acc47b208e3",
+        "chatSessionId": "sess_ffd862c3-2dad-4e04-a589-f95d6d7b8aab",
+        "timestamp": 1786374686979
+      },
+      {
+        "executionId": "3af53048-bac8-456d-9335-6acc47b208e3",
+        "chatSessionId": "sess_ffd862c3-2dad-4e04-a589-f95d6d7b8aab",
+        "timestamp": 1786376483378
+      },
+      {
+        "executionId": "3af53048-bac8-456d-9335-6acc47b208e3",
+        "chatSessionId": "sess_ffd862c3-2dad-4e04-a589-f95d6d7b8aab",
+        "timestamp": 1786376636714
+      }
+    ],
+    "8.2 建立 `src/components/roulette/RouletteWheel.tsx` Canvas 轉盤元件": [
+      {
+        "executionId": "3af53048-bac8-456d-9335-6acc47b208e3",
+        "chatSessionId": "sess_ffd862c3-2dad-4e04-a589-f95d6d7b8aab",
+        "timestamp": 1786374687030
+      },
+      {
+        "executionId": "3af53048-bac8-456d-9335-6acc47b208e3",
+        "chatSessionId": "sess_ffd862c3-2dad-4e04-a589-f95d6d7b8aab",
+        "timestamp": 1786376642596
+      },
+      {
+        "executionId": "3af53048-bac8-456d-9335-6acc47b208e3",
+        "chatSessionId": "sess_ffd862c3-2dad-4e04-a589-f95d6d7b8aab",
+        "timestamp": 1786376833760
+      }
+    ],
+    "8.3 建立 `src/components/roulette/FilterPanel.tsx` 篩選面板": [
+      {
+        "executionId": "3af53048-bac8-456d-9335-6acc47b208e3",
+        "chatSessionId": "sess_ffd862c3-2dad-4e04-a589-f95d6d7b8aab",
+        "timestamp": 1786374687085
+      },
+      {
+        "executionId": "3af53048-bac8-456d-9335-6acc47b208e3",
+        "chatSessionId": "sess_ffd862c3-2dad-4e04-a589-f95d6d7b8aab",
+        "timestamp": 1786376643390
+      },
+      {
+        "executionId": "3af53048-bac8-456d-9335-6acc47b208e3",
+        "chatSessionId": "sess_ffd862c3-2dad-4e04-a589-f95d6d7b8aab",
+        "timestamp": 1786376836199
+      }
+    ],
+    "8.4 建立 `src/components/roulette/ResultModal.tsx` 結果彈窗": [
+      {
+        "executionId": "3af53048-bac8-456d-9335-6acc47b208e3",
+        "chatSessionId": "sess_ffd862c3-2dad-4e04-a589-f95d6d7b8aab",
+        "timestamp": 1786374687135
+      },
+      {
+        "executionId": "3af53048-bac8-456d-9335-6acc47b208e3",
+        "chatSessionId": "sess_ffd862c3-2dad-4e04-a589-f95d6d7b8aab",
+        "timestamp": 1786376644245
+      },
+      {
+        "executionId": "3af53048-bac8-456d-9335-6acc47b208e3",
+        "chatSessionId": "sess_ffd862c3-2dad-4e04-a589-f95d6d7b8aab",
+        "timestamp": 1786376836606
+      }
+    ],
+    "8.5 建立 `src/components/roulette/RoulettePage.tsx` 轉盤頁面": [
+      {
+        "executionId": "3af53048-bac8-456d-9335-6acc47b208e3",
+        "chatSessionId": "sess_ffd862c3-2dad-4e04-a589-f95d6d7b8aab",
+        "timestamp": 1786374687190
+      },
+      {
+        "executionId": "3af53048-bac8-456d-9335-6acc47b208e3",
+        "chatSessionId": "sess_ffd862c3-2dad-4e04-a589-f95d6d7b8aab",
+        "timestamp": 1786376841719
+      },
+      {
+        "executionId": "3af53048-bac8-456d-9335-6acc47b208e3",
+        "chatSessionId": "sess_ffd862c3-2dad-4e04-a589-f95d6d7b8aab",
+        "timestamp": 1786378311123
+      }
+    ],
+    "9.1 整合導航切換邏輯": [
+      {
+        "executionId": "3af53048-bac8-456d-9335-6acc47b208e3",
+        "chatSessionId": "sess_ffd862c3-2dad-4e04-a589-f95d6d7b8aab",
+        "timestamp": 1786374687245
+      },
+      {
+        "executionId": "3af53048-bac8-456d-9335-6acc47b208e3",
+        "chatSessionId": "sess_ffd862c3-2dad-4e04-a589-f95d6d7b8aab",
+        "timestamp": 1786378317156
+      },
+      {
+        "executionId": "3af53048-bac8-456d-9335-6acc47b208e3",
+        "chatSessionId": "sess_ffd862c3-2dad-4e04-a589-f95d6d7b8aab",
+        "timestamp": 1786378472234
+      }
+    ],
+    "9.2 更新 `src/main.tsx` 入口，整合完整應用": [
+      {
+        "executionId": "3af53048-bac8-456d-9335-6acc47b208e3",
+        "chatSessionId": "sess_ffd862c3-2dad-4e04-a589-f95d6d7b8aab",
+        "timestamp": 1786374687326
+      },
+      {
+        "executionId": "3af53048-bac8-456d-9335-6acc47b208e3",
+        "chatSessionId": "sess_ffd862c3-2dad-4e04-a589-f95d6d7b8aab",
+        "timestamp": 1786378318003
+      },
+      {
+        "executionId": "3af53048-bac8-456d-9335-6acc47b208e3",
+        "chatSessionId": "sess_ffd862c3-2dad-4e04-a589-f95d6d7b8aab",
+        "timestamp": 1786378473037
+      }
+    ],
+    "10. 最終檢查點 - 完整功能驗證": [
+      {
+        "executionId": "3af53048-bac8-456d-9335-6acc47b208e3",
+        "chatSessionId": "sess_ffd862c3-2dad-4e04-a589-f95d6d7b8aab",
+        "timestamp": 1786374687374
+      },
+      {
+        "executionId": "3af53048-bac8-456d-9335-6acc47b208e3",
+        "chatSessionId": "sess_ffd862c3-2dad-4e04-a589-f95d6d7b8aab",
+        "timestamp": 1786378479439
+      }
+    ],
+    "1. 專案初始化與核心型別定義": [
+      {
+        "executionId": "3af53048-bac8-456d-9335-6acc47b208e3",
+        "chatSessionId": "sess_ffd862c3-2dad-4e04-a589-f95d6d7b8aab",
+        "timestamp": 1786375507896
+      }
+    ],
+    "1.6 撰寫 Property Test：篩選邏輯正確性": [
+      {
+        "executionId": "3af53048-bac8-456d-9335-6acc47b208e3",
+        "chatSessionId": "sess_ffd862c3-2dad-4e04-a589-f95d6d7b8aab",
+        "timestamp": 1786375772513
+      }
+    ],
+    "1.7 撰寫 Property Test：餐廳名稱空白驗證": [
+      {
+        "executionId": "3af53048-bac8-456d-9335-6acc47b208e3",
+        "chatSessionId": "sess_ffd862c3-2dad-4e04-a589-f95d6d7b8aab",
+        "timestamp": 1786375773250
+      }
+    ],
+    "1.8 撰寫 Property Test：Tag 驗證規則": [
+      {
+        "executionId": "3af53048-bac8-456d-9335-6acc47b208e3",
+        "chatSessionId": "sess_ffd862c3-2dad-4e04-a589-f95d6d7b8aab",
+        "timestamp": 1786375773989
+      }
+    ],
+    "1.9 撰寫 Property Test：文字截斷規則": [
+      {
+        "executionId": "3af53048-bac8-456d-9335-6acc47b208e3",
+        "chatSessionId": "sess_ffd862c3-2dad-4e04-a589-f95d6d7b8aab",
+        "timestamp": 1786375774793
+      }
+    ],
+    "2. 狀態管理與資料層": [
+      {
+        "executionId": "3af53048-bac8-456d-9335-6acc47b208e3",
+        "chatSessionId": "sess_ffd862c3-2dad-4e04-a589-f95d6d7b8aab",
+        "timestamp": 1786375855855
+      }
+    ],
+    "2.5 撰寫 Property Test：新增餐廳增長清單": [
+      {
+        "executionId": "3af53048-bac8-456d-9335-6acc47b208e3",
+        "chatSessionId": "sess_ffd862c3-2dad-4e04-a589-f95d6d7b8aab",
+        "timestamp": 1786375861311
+      }
+    ],
+    "2.6 撰寫 Property Test：刪除餐廳縮減清單": [
+      {
+        "executionId": "3af53048-bac8-456d-9335-6acc47b208e3",
+        "chatSessionId": "sess_ffd862c3-2dad-4e04-a589-f95d6d7b8aab",
+        "timestamp": 1786375862169
+      }
+    ],
+    "2.7 撰寫 Property Test：狀態轉換欄位清除": [
+      {
+        "executionId": "3af53048-bac8-456d-9335-6acc47b208e3",
+        "chatSessionId": "sess_ffd862c3-2dad-4e04-a589-f95d6d7b8aab",
+        "timestamp": 1786375863077
+      }
+    ],
+    "2.8 撰寫 Property Test：Tag 移除局部性": [
+      {
+        "executionId": "3af53048-bac8-456d-9335-6acc47b208e3",
+        "chatSessionId": "sess_ffd862c3-2dad-4e04-a589-f95d6d7b8aab",
+        "timestamp": 1786375864104
+      }
+    ],
+    "2.9 撰寫 Property Test：Tag 去重複使用": [
+      {
+        "executionId": "3af53048-bac8-456d-9335-6acc47b208e3",
+        "chatSessionId": "sess_ffd862c3-2dad-4e04-a589-f95d6d7b8aab",
+        "timestamp": 1786375864922
+      }
+    ],
+    "2.10 撰寫 Property Test：清單排序不變量": [
+      {
+        "executionId": "3af53048-bac8-456d-9335-6acc47b208e3",
+        "chatSessionId": "sess_ffd862c3-2dad-4e04-a589-f95d6d7b8aab",
+        "timestamp": 1786375869788
+      }
+    ],
+    "4. 共用元件與佈局": [
+      {
+        "executionId": "3af53048-bac8-456d-9335-6acc47b208e3",
+        "chatSessionId": "sess_ffd862c3-2dad-4e04-a589-f95d6d7b8aab",
+        "timestamp": 1786376029919
+      }
+    ],
+    "4.6 撰寫 Property Test：Tag 顯示截斷規則": [
+      {
+        "executionId": "3af53048-bac8-456d-9335-6acc47b208e3",
+        "chatSessionId": "sess_ffd862c3-2dad-4e04-a589-f95d6d7b8aab",
+        "timestamp": 1786376035701
+      }
+    ],
+    "5.5 撰寫 Property Test：WISH_LIST 欄位隱藏不變量": [
+      {
+        "executionId": "3af53048-bac8-456d-9335-6acc47b208e3",
+        "chatSessionId": "sess_ffd862c3-2dad-4e04-a589-f95d6d7b8aab",
+        "timestamp": 1786376326721
+      }
+    ],
+    "6. 表單元件": [
+      {
+        "executionId": "3af53048-bac8-456d-9335-6acc47b208e3",
+        "chatSessionId": "sess_ffd862c3-2dad-4e04-a589-f95d6d7b8aab",
+        "timestamp": 1786376465269
+      }
+    ],
+    "5. 餐廳清單頁面": [
+      {
+        "executionId": "3af53048-bac8-456d-9335-6acc47b208e3",
+        "chatSessionId": "sess_ffd862c3-2dad-4e04-a589-f95d6d7b8aab",
+        "timestamp": 1786376465890
+      }
+    ],
+    "6.5 撰寫 Property Test：編輯資料往返一致性": [
+      {
+        "executionId": "3af53048-bac8-456d-9335-6acc47b208e3",
+        "chatSessionId": "sess_ffd862c3-2dad-4e04-a589-f95d6d7b8aab",
+        "timestamp": 1786376472490
+      }
+    ],
+    "8.6 撰寫 Property Test：轉盤選擇均勻性": [
+      {
+        "executionId": "3af53048-bac8-456d-9335-6acc47b208e3",
+        "chatSessionId": "sess_ffd862c3-2dad-4e04-a589-f95d6d7b8aab",
+        "timestamp": 1786376842936
+      }
+    ],
+    "8. 轉盤頁面與動畫": [
+      {
+        "executionId": "3af53048-bac8-456d-9335-6acc47b208e3",
+        "chatSessionId": "sess_ffd862c3-2dad-4e04-a589-f95d6d7b8aab",
+        "timestamp": 1786378311193
+      }
+    ],
+    "9. 導航與整合": [
+      {
+        "executionId": "3af53048-bac8-456d-9335-6acc47b208e3",
+        "chatSessionId": "sess_ffd862c3-2dad-4e04-a589-f95d6d7b8aab",
+        "timestamp": 1786378473099
+      }
+    ]
+  }
+}

@@ -1,0 +1,130 @@
+import type { Restaurant, Tag } from '../types';
+
+// === Dummy Tags ===
+
+export const dummyTags: Tag[] = [
+  { id: 'tag-001-宵夜', name: '宵夜' },
+  { id: 'tag-002-快餐', name: '快餐' },
+  { id: 'tag-003-平價', name: '平價' },
+  { id: 'tag-004-約會', name: '約會' },
+  { id: 'tag-005-聚餐', name: '聚餐' },
+  { id: 'tag-006-甜點', name: '甜點' },
+  { id: 'tag-007-日式', name: '日式' },
+  { id: 'tag-008-台式', name: '台式' },
+];
+
+// === Dummy Restaurants ===
+
+export const dummyRestaurants: Restaurant[] = [
+  // --- VISITED: 高評分 (4.0-5.0) ---
+  {
+    id: 'rest-001-鮨處光',
+    name: '鮨處光',
+    status: 'VISITED',
+    rating: 4.5,
+    avgCost: 1200,
+    budgetLevel: '$$$',
+    recommendedDishes: ['炙燒鮭魚握壽司', '海膽軍艦', '鮪魚大腹'],
+    notes: '隱藏在巷弄裡的板前壽司，師傅手藝精湛，食材新鮮度極高。需提前三天預約。',
+    tagIds: ['tag-004-約會', 'tag-007-日式', 'tag-005-聚餐'],
+    createdAt: '2024-11-15T10:30:00.000Z',
+    updatedAt: '2024-11-15T10:30:00.000Z',
+  },
+  {
+    id: 'rest-002-阿明滷肉飯',
+    name: '阿明滷肉飯',
+    status: 'VISITED',
+    rating: 4.0,
+    avgCost: 80,
+    budgetLevel: '$',
+    recommendedDishes: ['滷肉飯', '排骨湯', '滷蛋'],
+    notes: '在地人推薦的銅板美食，滷肉醬汁鹹香不膩，白飯無限續。',
+    tagIds: ['tag-003-平價', 'tag-008-台式', 'tag-002-快餐'],
+    createdAt: '2024-10-20T08:15:00.000Z',
+    updatedAt: '2024-10-20T08:15:00.000Z',
+  },
+
+  // --- VISITED: 中評分 (3.0-3.5) ---
+  {
+    id: 'rest-003-好食光義大利麵',
+    name: '好食光義大利麵',
+    status: 'VISITED',
+    rating: 3.5,
+    avgCost: 320,
+    budgetLevel: '$$',
+    recommendedDishes: ['白酒蛤蜊義大利麵', '提拉米蘇'],
+    notes: '環境不錯適合朋友聚餐，但出餐速度偏慢，平日中午人較少。',
+    tagIds: ['tag-005-聚餐', 'tag-004-約會'],
+    createdAt: '2024-09-10T12:00:00.000Z',
+    updatedAt: '2024-09-10T12:00:00.000Z',
+  },
+  {
+    id: 'rest-004-老張牛肉麵',
+    name: '老張牛肉麵',
+    status: 'VISITED',
+    rating: 3.0,
+    avgCost: 180,
+    budgetLevel: '$',
+    recommendedDishes: ['紅燒牛肉麵'],
+    notes: '份量很大，湯頭還行但牛肉稍硬。CP 值中等。',
+    tagIds: ['tag-008-台式', 'tag-003-平價'],
+    createdAt: '2024-08-05T18:45:00.000Z',
+    updatedAt: '2024-08-05T18:45:00.000Z',
+  },
+
+  // --- VISITED: 低評分 (1.0-2.5) ---
+  {
+    id: 'rest-005-速食天堂',
+    name: '速食天堂',
+    status: 'VISITED',
+    rating: 2.0,
+    avgCost: 150,
+    budgetLevel: '$',
+    recommendedDishes: ['炸雞腿堡'],
+    notes: '食物普通，環境吵雜，衛生條件堪憂。不會再訪。',
+    tagIds: ['tag-002-快餐'],
+    createdAt: '2024-07-22T20:30:00.000Z',
+    updatedAt: '2024-07-22T20:30:00.000Z',
+  },
+  {
+    id: 'rest-006-深夜食堂拉麵',
+    name: '深夜食堂拉麵',
+    status: 'VISITED',
+    rating: 1.5,
+    avgCost: 250,
+    budgetLevel: '$$',
+    recommendedDishes: [],
+    notes: '湯頭太鹹、麵條過軟，服務態度差。招牌拉麵名不副實。',
+    tagIds: ['tag-001-宵夜', 'tag-007-日式'],
+    createdAt: '2024-06-18T23:00:00.000Z',
+    updatedAt: '2024-06-18T23:00:00.000Z',
+  },
+
+  // --- WISH_LIST ---
+  {
+    id: 'rest-007-甜蜜時光',
+    name: '甜蜜時光手作甜點',
+    status: 'WISH_LIST',
+    rating: null,
+    avgCost: null,
+    budgetLevel: null,
+    recommendedDishes: [],
+    notes: '朋友推薦的甜點店，聽說千層蛋糕很厲害，找時間去試試。',
+    tagIds: ['tag-006-甜點', 'tag-004-約會'],
+    createdAt: '2024-12-01T14:00:00.000Z',
+    updatedAt: '2024-12-01T14:00:00.000Z',
+  },
+  {
+    id: 'rest-008-夜市碳烤',
+    name: '阿財碳烤',
+    status: 'WISH_LIST',
+    rating: null,
+    avgCost: null,
+    budgetLevel: null,
+    recommendedDishes: [],
+    notes: '夜市排隊名店，每次經過都大排長龍，下次早點去排。',
+    tagIds: ['tag-001-宵夜', 'tag-008-台式', 'tag-003-平價'],
+    createdAt: '2024-11-28T21:00:00.000Z',
+    updatedAt: '2024-11-28T21:00:00.000Z',
+  },
+];
