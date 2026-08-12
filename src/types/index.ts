@@ -52,13 +52,29 @@ export const DEFAULT_FILTER: FilterState = {
   selectedTagIds: [],
 };
 
+// === 熱量分析相關 ===
+
+export interface NutritionItem {
+  name: string;
+  calories: number;
+  protein: number;
+  carbs: number;
+  fat: number;
+}
+
+export interface CalorieResult {
+  totalCalories: number;
+  items: NutritionItem[];
+  summary: string;
+}
+
 // === 全域狀態 ===
 
 export interface AppState {
   restaurants: Restaurant[];
   tags: Tag[];
   filters: FilterState;
-  currentPage: 'list' | 'roulette';
+  currentPage: 'list' | 'roulette' | 'calories';
   ui: {
     isFormOpen: boolean;
     editingRestaurantId: string | null;
@@ -78,7 +94,7 @@ export type AppAction =
   | { type: 'ADD_TAG'; payload: { name: string } }
   | { type: 'SET_FILTERS'; payload: Partial<FilterState> }
   | { type: 'RESET_FILTERS' }
-  | { type: 'NAVIGATE'; payload: { page: 'list' | 'roulette' } }
+  | { type: 'NAVIGATE'; payload: { page: 'list' | 'roulette' | 'calories' } }
   | { type: 'SET_UI'; payload: Partial<AppState['ui']> }
   | { type: 'LOAD_DATA'; payload: { restaurants: Restaurant[]; tags: Tag[] } };
 

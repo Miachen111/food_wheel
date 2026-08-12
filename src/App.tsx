@@ -3,6 +3,7 @@ import { Layout } from './components/layout/Layout';
 import { NavigationBar } from './components/layout/NavigationBar';
 import { RestaurantListPage } from './components/restaurant/RestaurantListPage';
 import { RoulettePage } from './components/roulette/RoulettePage';
+import { CaloriePage } from './components/calories/CaloriePage';
 import { ReviewForm } from './components/form/ReviewForm';
 import type { RestaurantFormData } from './types';
 
@@ -27,15 +28,11 @@ function AppContent() {
 
   const handleAddNewTag = (name: string): string => {
     dispatch({ type: 'ADD_TAG', payload: { name } });
-    // Find the newly added tag by name (case-insensitive match)
     const trimmed = name.trim();
     const existing = state.tags.find(
       (t) => t.name.toLowerCase() === trimmed.toLowerCase()
     );
     if (existing) return existing.id;
-    // If not found yet (state hasn't re-rendered), generate a placeholder id
-    // In practice, the reducer uses crypto.randomUUID() and the next render will have it
-    // We return a temporary lookup — the TagInput will use the tags from state
     return '';
   };
 
@@ -43,9 +40,20 @@ function AppContent() {
     ? state.restaurants.find((r) => r.id === state.ui.editingRestaurantId)
     : undefined;
 
+  const renderPage = () => {
+    switch (state.currentPage) {
+      case 'calories':
+        return <CaloriePage />;
+      case 'roulette':
+        return <RoulettePage />;
+      default:
+        return <RestaurantListPage />;
+    }
+  };
+
   return (
     <Layout>
-      {state.currentPage === 'roulette' ? <RoulettePage /> : <RestaurantListPage />}
+      {renderPage()}
 
       <NavigationBar />
 
