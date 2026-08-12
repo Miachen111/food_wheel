@@ -2,6 +2,7 @@ import { useState, useEffect, useCallback } from 'react';
 import StarRating from './StarRating';
 import { DishInput } from './DishInput';
 import { TagInput } from './TagInput';
+import { PlaceSearch } from './PlaceSearch';
 import {
   validateRestaurantName,
   validateAvgCost,
@@ -84,6 +85,16 @@ export function ReviewForm({
     setErrors((prev) => ({ ...prev, notes: result.valid ? undefined : result.error }));
   }, [notes]);
 
+  const handlePlaceSelect = (place: { name: string; address: string; rating: number | null; placeId: string }) => {
+    setName(place.name);
+    if (place.rating !== null) {
+      // Round to nearest 0.5
+      setRating(Math.round(place.rating * 2) / 2);
+    }
+    // Clear name error if present
+    setErrors((prev) => ({ ...prev, name: undefined }));
+  };
+
   // Submit with full validation
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -127,6 +138,15 @@ export function ReviewForm({
           <h2 className="text-xl font-bold text-gray-900">
             {mode === 'create' ? '新增餐廳' : '編輯餐廳'}
           </h2>
+
+          {/* Google Places search */}
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-1">
+              搜尋餐廳 <span className="text-xs text-gray-400">(可選)</span>
+            </label>
+            <PlaceSearch onPlaceSelect={handlePlaceSelect} />
+            <p className="mt-1 text-xs text-gray-400">搜尋後會自動填入名稱和評分，也可以直接手動輸入</p>
+          </div>
 
           {/* Name field */}
           <div>

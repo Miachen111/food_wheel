@@ -10,7 +10,6 @@ import type { AppState, AppAction } from '../types';
 import { DEFAULT_FILTER } from '../types';
 import { appReducer } from './appReducer';
 import { isInitialized, loadData, saveData, markInitialized } from '../services/dataService';
-import { dummyRestaurants, dummyTags } from '../data/dummyData';
 
 // === Initial State ===
 
@@ -56,11 +55,7 @@ export function AppProvider({ children }: AppProviderProps) {
         dispatch({ type: 'LOAD_DATA', payload: data });
       }
     } else {
-      dispatch({
-        type: 'LOAD_DATA',
-        payload: { restaurants: dummyRestaurants, tags: dummyTags },
-      });
-      saveData(dummyRestaurants, dummyTags);
+      // First time: start with empty data
       markInitialized();
     }
   }, []);
