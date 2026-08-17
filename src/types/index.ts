@@ -74,7 +74,7 @@ export interface AppState {
   restaurants: Restaurant[];
   tags: Tag[];
   filters: FilterState;
-  currentPage: 'list' | 'roulette' | 'calories';
+  currentPage: 'list' | 'roulette' | 'calories' | 'chat';
   ui: {
     isFormOpen: boolean;
     editingRestaurantId: string | null;
@@ -94,7 +94,7 @@ export type AppAction =
   | { type: 'ADD_TAG'; payload: { name: string } }
   | { type: 'SET_FILTERS'; payload: Partial<FilterState> }
   | { type: 'RESET_FILTERS' }
-  | { type: 'NAVIGATE'; payload: { page: 'list' | 'roulette' | 'calories' } }
+  | { type: 'NAVIGATE'; payload: { page: 'list' | 'roulette' | 'calories' | 'chat' } }
   | { type: 'SET_UI'; payload: Partial<AppState['ui']> }
   | { type: 'LOAD_DATA'; payload: { restaurants: Restaurant[]; tags: Tag[] } };
 

@@ -4,6 +4,7 @@ import { NavigationBar } from './components/layout/NavigationBar';
 import { RestaurantListPage } from './components/restaurant/RestaurantListPage';
 import { RoulettePage } from './components/roulette/RoulettePage';
 import { CaloriePage } from './components/calories/CaloriePage';
+import { ChatPage } from './components/chat/ChatPage';
 import { ReviewForm } from './components/form/ReviewForm';
 import type { RestaurantFormData } from './types';
 
@@ -46,6 +47,8 @@ function AppContent() {
         return <CaloriePage />;
       case 'roulette':
         return <RoulettePage />;
+      case 'chat':
+        return <ChatPage />;
       default:
         return <RestaurantListPage />;
     }

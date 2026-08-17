@@ -1,5 +1,6 @@
 import { useState, useRef } from 'react';
 import type { CalorieResult } from '../../types';
+import { analyzeCalories } from '../../services/geminiService';
 
 /**
  * 熱量計算頁面
@@ -10,6 +11,7 @@ export function CaloriePage() {
   const [description, setDescription] = useState('');
   const [isAnalyzing, setIsAnalyzing] = useState(false);
   const [result, setResult] = useState<CalorieResult | null>(null);
+  const [error, setError] = useState<string | null>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
   const cameraInputRef = useRef<HTMLInputElement>(null);
 
@@ -21,6 +23,7 @@ export function CaloriePage() {
     reader.onload = (event) => {
       setImage(event.target?.result as string);
       setResult(null);
+      setError(null);
     };
     reader.readAsDataURL(file);
   };
@@ -35,24 +38,26 @@ export function CaloriePage() {
     if (!image && !description.trim()) return;
 
     setIsAnalyzing(true);
+    setError(null);
+    setResult(null);
 
-    // TODO: 串接 Gemini API 進行實際分析
-    // 目前使用 mock data
-    await new Promise((resolve) => setTimeout(resolve, 1500));
-
-    const mockResult: CalorieResult = {
-      totalCalories: 650,
-      items: [
-        { name: '白飯', calories: 230, protein: 4, carbs: 50, fat: 0.5 },
-        { name: '滷肉', calories: 280, protein: 18, carbs: 5, fat: 20 },
-        { name: '燙青菜', calories: 45, protein: 2, carbs: 6, fat: 1.5 },
-        { name: '味噌湯', calories: 95, protein: 6, carbs: 8, fat: 4 },
-      ],
-      summary: '這是一份典型的台式便當，熱量適中。蛋白質來源主要是滷肉，建議搭配更多蔬菜增加纖維攝取。',
-    };
-
-    setResult(mockResult);
-    setIsAnalyzing(false);
+    try {
+      const responseText = await analyzeCalories(image, description);
+      
+      // Parse JSON response - handle potential markdown code blocks
+      let jsonStr = responseText.trim();
+      if (jsonStr.startsWith('```')) {
+        jsonStr = jsonStr.replace(/^```(?:json)?\n?/, '').replace(/\n?```$/, '');
+      }
+      
+      const parsed: CalorieResult = JSON.parse(jsonStr);
+      setResult(parsed);
+    } catch (err) {
+      console.error('[CaloriePage] Analysis error:', err);
+      setError(err instanceof Error ? err.message : '分析失敗，請稍後再試');
+    } finally {
+      setIsAnalyzing(false);
+    }
   };
 
   const canAnalyze = (image || description.trim()) && !isAnalyzing;
@@ -85,7 +90,6 @@ export function CaloriePage() {
           </div>
         ) : (
           <div className="flex gap-3">
-            {/* 選擇照片 */}
             <button
               type="button"
               onClick={() => fileInputRef.current?.click()}
@@ -97,7 +101,6 @@ export function CaloriePage() {
               <span className="text-sm">選擇照片</span>
             </button>
 
-            {/* 拍照 */}
             <button
               type="button"
               onClick={() => cameraInputRef.current?.click()}
@@ -112,7 +115,6 @@ export function CaloriePage() {
           </div>
         )}
 
-        {/* Hidden file inputs */}
         <input
           ref={fileInputRef}
           type="file"
@@ -172,16 +174,21 @@ export function CaloriePage() {
         )}
       </button>
 
+      {/* 錯誤訊息 */}
+      {error && (
+        <div className="mt-4 bg-red-50 border border-red-200 rounded-xl p-4">
+          <p className="text-sm text-red-700">{error}</p>
+        </div>
+      )}
+
       {/* 分析結果 */}
       {result && (
         <section className="mt-8 animate-fade-in">
-          {/* 總熱量 */}
           <div className="bg-gradient-to-r from-indigo-500 to-purple-500 rounded-xl p-5 text-white mb-4">
             <p className="text-sm opacity-80">估算總熱量</p>
             <p className="text-4xl font-bold mt-1">{result.totalCalories} <span className="text-lg font-normal">kcal</span></p>
           </div>
 
-          {/* 食物明細 */}
           <div className="bg-white rounded-xl border border-gray-200 overflow-hidden mb-4">
             <h3 className="px-4 py-3 bg-gray-50 text-sm font-medium text-gray-700 border-b border-gray-200">
               營養明細
@@ -203,7 +210,6 @@ export function CaloriePage() {
             </ul>
           </div>
 
-          {/* AI 建議 */}
           <div className="bg-amber-50 border border-amber-200 rounded-xl p-4">
             <div className="flex items-start gap-2">
               <span className="text-amber-500 text-lg">💡</span>
