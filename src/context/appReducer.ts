@@ -21,7 +21,11 @@ export function appReducer(state: AppState, action: AppAction): AppState {
         budgetLevel: isWishList ? null : deriveBudgetLevel(formData.avgCost),
         recommendedDishes: isWishList ? [] : formData.recommendedDishes,
         notes: formData.notes,
+        address: formData.address ?? '',
         tagIds: formData.tagIds,
+        latitude: formData.latitude ?? null,
+        longitude: formData.longitude ?? null,
+        district: formData.district ?? null,
         createdAt: now,
         updatedAt: now,
       };
@@ -55,6 +59,7 @@ export function appReducer(state: AppState, action: AppAction): AppState {
             ? []
             : data.recommendedDishes,
           notes: data.notes,
+          address: data.address ?? restaurant.address,
           tagIds: data.tagIds,
           updatedAt: now,
         };
@@ -66,11 +71,31 @@ export function appReducer(state: AppState, action: AppAction): AppState {
     }
 
     case 'DELETE_RESTAURANT': {
+      const deleteId = action.payload.id;
       return {
         ...state,
-        restaurants: state.restaurants.filter(
-          (r) => r.id !== action.payload.id
+        restaurants: state.restaurants.filter((r) => r.id !== deleteId),
+        selectedRestaurantIds: state.selectedRestaurantIds.filter(
+          (id) => id !== deleteId
         ),
+      };
+    }
+
+    case 'TOGGLE_RESTAURANT_SELECTION': {
+      const { id } = action.payload;
+      const isSelected = state.selectedRestaurantIds.includes(id);
+      return {
+        ...state,
+        selectedRestaurantIds: isSelected
+          ? state.selectedRestaurantIds.filter((rid) => rid !== id)
+          : [...state.selectedRestaurantIds, id],
+      };
+    }
+
+    case 'CLEAR_SELECTION': {
+      return {
+        ...state,
+        selectedRestaurantIds: [],
       };
     }
 
@@ -124,9 +149,16 @@ export function appReducer(state: AppState, action: AppAction): AppState {
     }
 
     case 'LOAD_DATA': {
+      const normalizedRestaurants = action.payload.restaurants.map(r => ({
+        ...r,
+        latitude: r.latitude ?? null,
+        longitude: r.longitude ?? null,
+        district: r.district ?? null,
+        address: r.address ?? '',
+      }));
       return {
         ...state,
-        restaurants: action.payload.restaurants,
+        restaurants: normalizedRestaurants,
         tags: action.payload.tags,
       };
     }

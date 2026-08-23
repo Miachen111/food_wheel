@@ -13,6 +13,7 @@ function createInitialState(overrides?: Partial<AppState>): AppState {
     restaurants: [],
     tags: [],
     filters: { ...DEFAULT_FILTER },
+    selectedRestaurantIds: [],
     currentPage: 'list',
     ui: {
       isFormOpen: false,
@@ -36,7 +37,11 @@ function createRestaurant(overrides?: Partial<Restaurant>): Restaurant {
     budgetLevel: '$$',
     recommendedDishes: ['牛肉麵'],
     notes: '好吃',
+    address: '',
     tagIds: ['tag-1'],
+    latitude: null,
+    longitude: null,
+    district: null,
     createdAt: '2024-01-01T00:00:00.000Z',
     updatedAt: '2024-01-01T00:00:00.000Z',
     ...overrides,
@@ -254,6 +259,79 @@ describe('appReducer', () => {
 
       expect(result.restaurants).toHaveLength(1);
     });
+
+    it('should also remove deleted restaurant ID from selectedRestaurantIds', () => {
+      const r1 = createRestaurant({ id: 'rest-1' });
+      const r2 = createRestaurant({ id: 'rest-2' });
+      const state = createInitialState({
+        restaurants: [r1, r2],
+        selectedRestaurantIds: ['rest-1', 'rest-2'],
+      });
+
+      const result = appReducer(state, { type: 'DELETE_RESTAURANT', payload: { id: 'rest-1' } });
+
+      expect(result.selectedRestaurantIds).toEqual(['rest-2']);
+    });
+  });
+
+  describe('TOGGLE_RESTAURANT_SELECTION', () => {
+    it('should add restaurant ID to selectedRestaurantIds when not selected', () => {
+      const state = createInitialState({ selectedRestaurantIds: [] });
+
+      const result = appReducer(state, {
+        type: 'TOGGLE_RESTAURANT_SELECTION',
+        payload: { id: 'rest-1' },
+      });
+
+      expect(result.selectedRestaurantIds).toEqual(['rest-1']);
+    });
+
+    it('should remove restaurant ID from selectedRestaurantIds when already selected', () => {
+      const state = createInitialState({ selectedRestaurantIds: ['rest-1', 'rest-2'] });
+
+      const result = appReducer(state, {
+        type: 'TOGGLE_RESTAURANT_SELECTION',
+        payload: { id: 'rest-1' },
+      });
+
+      expect(result.selectedRestaurantIds).toEqual(['rest-2']);
+    });
+
+    it('should not affect other state fields', () => {
+      const r1 = createRestaurant({ id: 'rest-1' });
+      const state = createInitialState({ restaurants: [r1], selectedRestaurantIds: [] });
+
+      const result = appReducer(state, {
+        type: 'TOGGLE_RESTAURANT_SELECTION',
+        payload: { id: 'rest-1' },
+      });
+
+      expect(result.restaurants).toEqual([r1]);
+      expect(result.currentPage).toBe('list');
+    });
+  });
+
+  describe('CLEAR_SELECTION', () => {
+    it('should reset selectedRestaurantIds to empty array', () => {
+      const state = createInitialState({ selectedRestaurantIds: ['rest-1', 'rest-2', 'rest-3'] });
+
+      const result = appReducer(state, { type: 'CLEAR_SELECTION' });
+
+      expect(result.selectedRestaurantIds).toEqual([]);
+    });
+
+    it('should not affect other state fields', () => {
+      const r1 = createRestaurant({ id: 'rest-1' });
+      const state = createInitialState({
+        restaurants: [r1],
+        selectedRestaurantIds: ['rest-1'],
+      });
+
+      const result = appReducer(state, { type: 'CLEAR_SELECTION' });
+
+      expect(result.restaurants).toEqual([r1]);
+      expect(result.currentPage).toBe('list');
+    });
   });
 
   describe('ADD_TAG', () => {
@@ -369,8 +447,27 @@ describe('appReducer', () => {
 
       expect(result.restaurants).toHaveLength(2);
       expect(result.tags).toHaveLength(1);
-      expect(result.restaurants).toBe(restaurants);
+      expect(result.restaurants).toStrictEqual(restaurants);
       expect(result.tags).toBe(tags);
+    });
+
+    it('should normalize old data missing latitude/longitude/district to null', () => {
+      const state = createInitialState();
+      // Simulate old data without location fields
+      const oldRestaurants = [
+        createRestaurant({ id: 'r1' }),
+        createRestaurant({ id: 'r2' }),
+      ].map(({ latitude, longitude, district, ...rest }) => rest) as any[];
+      const tags: Tag[] = [{ id: 't1', name: 'Tag1' }];
+
+      const result = appReducer(state, { type: 'LOAD_DATA', payload: { restaurants: oldRestaurants, tags } });
+
+      expect(result.restaurants[0]!.latitude).toBeNull();
+      expect(result.restaurants[0]!.longitude).toBeNull();
+      expect(result.restaurants[0]!.district).toBeNull();
+      expect(result.restaurants[1]!.latitude).toBeNull();
+      expect(result.restaurants[1]!.longitude).toBeNull();
+      expect(result.restaurants[1]!.district).toBeNull();
     });
   });
 

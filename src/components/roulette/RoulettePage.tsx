@@ -1,8 +1,6 @@
 import { useEffect, useRef, useCallback } from 'react';
 import { useAppContext } from '../../context/AppContext';
 import { useRouletteWheel } from '../../hooks/useRouletteWheel';
-import { filterCandidates } from '../../utils/filterUtils';
-import { FilterPanel } from './FilterPanel';
 import RouletteWheel from './RouletteWheel';
 import { ResultModal } from './ResultModal';
 
@@ -10,11 +8,14 @@ export function RoulettePage() {
   const { state, dispatch } = useAppContext();
   const { currentAngle, isSpinning, spin, selectedIndex } = useRouletteWheel();
 
-  const candidates = filterCandidates(state.restaurants, state.filters);
+  const candidates = state.restaurants.filter(
+    (r) => state.selectedRestaurantIds.includes(r.id)
+  );
   const wheelCandidates = candidates.map((r) => ({ id: r.id, name: r.name }));
 
   const prevIsSpinning = useRef(isSpinning);
   const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const hasShownResult = useRef(false);
 
   // Sync isSpinning state to UI (to disable nav during spin)
   useEffect(() => {
@@ -29,10 +30,11 @@ export function RoulettePage() {
 
   // When spin completes, wait 500ms then open ResultModal
   useEffect(() => {
-    if (!isSpinning && selectedIndex !== null) {
+    if (!isSpinning && selectedIndex !== null && !hasShownResult.current) {
       const selected = candidates[selectedIndex];
       if (selected) {
         timerRef.current = setTimeout(() => {
+          hasShownResult.current = true;
           dispatch({ type: 'SET_UI', payload: { resultRestaurantId: selected.id } });
         }, 500);
       }
@@ -46,6 +48,7 @@ export function RoulettePage() {
   }, [isSpinning, selectedIndex, candidates, dispatch]);
 
   const handleSpin = useCallback(() => {
+    hasShownResult.current = false;
     if (candidates.length === 1) {
       // Skip animation, directly show result
       const single = candidates[0];
@@ -76,13 +79,16 @@ export function RoulettePage() {
 
   return (
     <div className="flex flex-col gap-6">
-      <FilterPanel
-        filters={state.filters}
-        onChange={(filters) => dispatch({ type: 'SET_FILTERS', payload: filters })}
-        onReset={() => dispatch({ type: 'RESET_FILTERS' })}
-        candidateCount={candidates.length}
-        allTags={state.tags}
-      />
+      <div className="text-center">
+        <p className="text-lg font-medium text-gray-700">
+          已選取 {candidates.length} 間餐廳
+        </p>
+        {candidates.length === 0 && (
+          <p className="text-sm text-gray-500 mt-2">
+            尚未勾選任何餐廳，請前往清單頁面勾選想加入轉盤的餐廳。
+          </p>
+        )}
+      </div>
 
       <RouletteWheel
         candidates={wheelCandidates}

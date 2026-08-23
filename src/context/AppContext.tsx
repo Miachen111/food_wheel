@@ -17,6 +17,7 @@ const initialState: AppState = {
   restaurants: [],
   tags: [],
   filters: DEFAULT_FILTER,
+  selectedRestaurantIds: [],
   currentPage: 'list',
   ui: {
     isFormOpen: false,

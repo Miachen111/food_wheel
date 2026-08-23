@@ -1,0 +1,186 @@
+{
+  "pbtResults": {},
+  "executionHistory": {
+    "1.1 Add GroupMode type, extend AppState and AppAction in src/types/index.ts": [
+      {
+        "executionId": "fb6af7be-81ca-4d47-a726-e9a4d9e22bc9",
+        "chatSessionId": "sess_1d0f2f44-1dad-48d2-a9eb-6df2ee8d9578",
+        "timestamp": 1787489789844
+      },
+      {
+        "executionId": "fb6af7be-81ca-4d47-a726-e9a4d9e22bc9",
+        "chatSessionId": "sess_1d0f2f44-1dad-48d2-a9eb-6df2ee8d9578",
+        "timestamp": 1787489798155
+      },
+      {
+        "executionId": "fb6af7be-81ca-4d47-a726-e9a4d9e22bc9",
+        "chatSessionId": "sess_1d0f2f44-1dad-48d2-a9eb-6df2ee8d9578",
+        "timestamp": 1787489862030
+      }
+    ],
+    "1.2 Extend appReducer with new action handlers in src/context/appReducer.ts": [
+      {
+        "executionId": "fb6af7be-81ca-4d47-a726-e9a4d9e22bc9",
+        "chatSessionId": "sess_1d0f2f44-1dad-48d2-a9eb-6df2ee8d9578",
+        "timestamp": 1787489789894
+      },
+      {
+        "executionId": "fb6af7be-81ca-4d47-a726-e9a4d9e22bc9",
+        "chatSessionId": "sess_1d0f2f44-1dad-48d2-a9eb-6df2ee8d9578",
+        "timestamp": 1787489867641
+      },
+      {
+        "executionId": "fb6af7be-81ca-4d47-a726-e9a4d9e22bc9",
+        "chatSessionId": "sess_1d0f2f44-1dad-48d2-a9eb-6df2ee8d9578",
+        "timestamp": 1787489965979
+      }
+    ],
+    "1.3 Update AppContext initial state in src/context/AppContext.tsx": [
+      {
+        "executionId": "fb6af7be-81ca-4d47-a726-e9a4d9e22bc9",
+        "chatSessionId": "sess_1d0f2f44-1dad-48d2-a9eb-6df2ee8d9578",
+        "timestamp": 1787489789934
+      },
+      {
+        "executionId": "fb6af7be-81ca-4d47-a726-e9a4d9e22bc9",
+        "chatSessionId": "sess_1d0f2f44-1dad-48d2-a9eb-6df2ee8d9578",
+        "timestamp": 1787489868181
+      },
+      {
+        "executionId": "fb6af7be-81ca-4d47-a726-e9a4d9e22bc9",
+        "chatSessionId": "sess_1d0f2f44-1dad-48d2-a9eb-6df2ee8d9578",
+        "timestamp": 1787489964970
+      }
+    ],
+    "2.1 Create src/utils/groupUtils.ts with grouping logic": [
+      {
+        "executionId": "fb6af7be-81ca-4d47-a726-e9a4d9e22bc9",
+        "chatSessionId": "sess_1d0f2f44-1dad-48d2-a9eb-6df2ee8d9578",
+        "timestamp": 1787489789980
+      },
+      {
+        "executionId": "fb6af7be-81ca-4d47-a726-e9a4d9e22bc9",
+        "chatSessionId": "sess_1d0f2f44-1dad-48d2-a9eb-6df2ee8d9578",
+        "timestamp": 1787489971466
+      },
+      {
+        "executionId": "fb6af7be-81ca-4d47-a726-e9a4d9e22bc9",
+        "chatSessionId": "sess_1d0f2f44-1dad-48d2-a9eb-6df2ee8d9578",
+        "timestamp": 1787490046529
+      }
+    ],
+    "3. Checkpoint - Ensure types and utilities compile": [
+      {
+        "executionId": "fb6af7be-81ca-4d47-a726-e9a4d9e22bc9",
+        "chatSessionId": "sess_1d0f2f44-1dad-48d2-a9eb-6df2ee8d9578",
+        "timestamp": 1787489790027
+      },
+      {
+        "executionId": "fb6af7be-81ca-4d47-a726-e9a4d9e22bc9",
+        "chatSessionId": "sess_1d0f2f44-1dad-48d2-a9eb-6df2ee8d9578",
+        "timestamp": 1787490052950
+      },
+      {
+        "executionId": "fb6af7be-81ca-4d47-a726-e9a4d9e22bc9",
+        "chatSessionId": "sess_1d0f2f44-1dad-48d2-a9eb-6df2ee8d9578",
+        "timestamp": 1787490169528
+      }
+    ],
+    "4.1 Rewrite RestaurantListPage to use grouped display with checkboxes": [
+      {
+        "executionId": "fb6af7be-81ca-4d47-a726-e9a4d9e22bc9",
+        "chatSessionId": "sess_1d0f2f44-1dad-48d2-a9eb-6df2ee8d9578",
+        "timestamp": 1787489790061
+      },
+      {
+        "executionId": "fb6af7be-81ca-4d47-a726-e9a4d9e22bc9",
+        "chatSessionId": "sess_1d0f2f44-1dad-48d2-a9eb-6df2ee8d9578",
+        "timestamp": 1787490175025
+      },
+      {
+        "executionId": "fb6af7be-81ca-4d47-a726-e9a4d9e22bc9",
+        "chatSessionId": "sess_1d0f2f44-1dad-48d2-a9eb-6df2ee8d9578",
+        "timestamp": 1787490286824
+      }
+    ],
+    "5.1 Update RoulettePage to remove FilterPanel and use selectedRestaurantIds": [
+      {
+        "executionId": "fb6af7be-81ca-4d47-a726-e9a4d9e22bc9",
+        "chatSessionId": "sess_1d0f2f44-1dad-48d2-a9eb-6df2ee8d9578",
+        "timestamp": 1787489790091
+      },
+      {
+        "executionId": "fb6af7be-81ca-4d47-a726-e9a4d9e22bc9",
+        "chatSessionId": "sess_1d0f2f44-1dad-48d2-a9eb-6df2ee8d9578",
+        "timestamp": 1787490175812
+      },
+      {
+        "executionId": "fb6af7be-81ca-4d47-a726-e9a4d9e22bc9",
+        "chatSessionId": "sess_1d0f2f44-1dad-48d2-a9eb-6df2ee8d9578",
+        "timestamp": 1787490287817
+      }
+    ],
+    "6. Checkpoint - Ensure all tests pass": [
+      {
+        "executionId": "fb6af7be-81ca-4d47-a726-e9a4d9e22bc9",
+        "chatSessionId": "sess_1d0f2f44-1dad-48d2-a9eb-6df2ee8d9578",
+        "timestamp": 1787489790123
+      },
+      {
+        "executionId": "fb6af7be-81ca-4d47-a726-e9a4d9e22bc9",
+        "chatSessionId": "sess_1d0f2f44-1dad-48d2-a9eb-6df2ee8d9578",
+        "timestamp": 1787490293213
+      },
+      {
+        "executionId": "fb6af7be-81ca-4d47-a726-e9a4d9e22bc9",
+        "chatSessionId": "sess_1d0f2f44-1dad-48d2-a9eb-6df2ee8d9578",
+        "timestamp": 1787490335785
+      }
+    ],
+    "8. Final checkpoint - Ensure all tests pass": [
+      {
+        "executionId": "fb6af7be-81ca-4d47-a726-e9a4d9e22bc9",
+        "chatSessionId": "sess_1d0f2f44-1dad-48d2-a9eb-6df2ee8d9578",
+        "timestamp": 1787489790155
+      },
+      {
+        "executionId": "fb6af7be-81ca-4d47-a726-e9a4d9e22bc9",
+        "chatSessionId": "sess_1d0f2f44-1dad-48d2-a9eb-6df2ee8d9578",
+        "timestamp": 1787490341983
+      },
+      {
+        "executionId": "fb6af7be-81ca-4d47-a726-e9a4d9e22bc9",
+        "chatSessionId": "sess_1d0f2f44-1dad-48d2-a9eb-6df2ee8d9578",
+        "timestamp": 1787490399782
+      }
+    ],
+    "1. Extend types and state management": [
+      {
+        "executionId": "fb6af7be-81ca-4d47-a726-e9a4d9e22bc9",
+        "chatSessionId": "sess_1d0f2f44-1dad-48d2-a9eb-6df2ee8d9578",
+        "timestamp": 1787489966013
+      }
+    ],
+    "2. Implement grouping utility functions": [
+      {
+        "executionId": "fb6af7be-81ca-4d47-a726-e9a4d9e22bc9",
+        "chatSessionId": "sess_1d0f2f44-1dad-48d2-a9eb-6df2ee8d9578",
+        "timestamp": 1787490046567
+      }
+    ],
+    "4. Refactor RestaurantListPage with grouped display and checkboxes": [
+      {
+        "executionId": "fb6af7be-81ca-4d47-a726-e9a4d9e22bc9",
+        "chatSessionId": "sess_1d0f2f44-1dad-48d2-a9eb-6df2ee8d9578",
+        "timestamp": 1787490286871
+      }
+    ],
+    "5. Refactor RoulettePage to use selection-based candidates": [
+      {
+        "executionId": "fb6af7be-81ca-4d47-a726-e9a4d9e22bc9",
+        "chatSessionId": "sess_1d0f2f44-1dad-48d2-a9eb-6df2ee8d9578",
+        "timestamp": 1787490287851
+      }
+    ]
+  }
+}

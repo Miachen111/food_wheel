@@ -37,6 +37,10 @@ export const RestaurantCard: React.FC<RestaurantCardProps> = ({
         </span>
       </div>
 
+      {restaurant.address && (
+        <p className="text-xs text-gray-500 truncate mb-1">{restaurant.address}</p>
+      )}
+
       {restaurant.status === 'VISITED' && (
         <div className="flex items-center gap-3 mb-2 text-sm text-gray-600">
           {restaurant.rating !== null && (
@@ -54,22 +58,6 @@ export const RestaurantCard: React.FC<RestaurantCardProps> = ({
         </div>
       )}
 
-      {isExpanded && (
-        <div className="mt-3 pt-3 border-t border-gray-100 text-sm text-gray-700">
-          {restaurant.recommendedDishes.length > 0 && (
-            <p className="mb-1">
-              <span className="font-medium">推薦菜色：</span>
-              {restaurant.recommendedDishes.join('、')}
-            </p>
-          )}
-          {restaurant.notes && (
-            <p>
-              <span className="font-medium">筆記：</span>
-              {restaurant.notes}
-            </p>
-          )}
-        </div>
-      )}
     </div>
   );
 };

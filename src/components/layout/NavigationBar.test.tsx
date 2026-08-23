@@ -24,6 +24,7 @@ function createMockState(overrides: Partial<AppState> = {}): AppState {
     restaurants: [],
     tags: [],
     filters: DEFAULT_FILTER,
+    selectedRestaurantIds: [],
     currentPage: 'list',
     ui: {
       isFormOpen: false,

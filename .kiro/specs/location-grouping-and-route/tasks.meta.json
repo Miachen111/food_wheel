@@ -1,0 +1,220 @@
+{
+  "pbtResults": {},
+  "executionHistory": {
+    "1.1 擴充 Restaurant 與 PlaceDetails 型別": [
+      {
+        "executionId": "87c9ccd1-d650-42ce-aeb9-40ac711b1995",
+        "chatSessionId": "sess_25fbc49d-1b3a-4a49-a32b-be5456f9b855",
+        "timestamp": 1787494308134
+      },
+      {
+        "executionId": "87c9ccd1-d650-42ce-aeb9-40ac711b1995",
+        "chatSessionId": "sess_25fbc49d-1b3a-4a49-a32b-be5456f9b855",
+        "timestamp": 1787494316687
+      },
+      {
+        "executionId": "87c9ccd1-d650-42ce-aeb9-40ac711b1995",
+        "chatSessionId": "sess_25fbc49d-1b3a-4a49-a32b-be5456f9b855",
+        "timestamp": 1787494519403
+      }
+    ],
+    "1.2 修改 getPlaceDetails 擷取 location 與 addressComponents": [
+      {
+        "executionId": "87c9ccd1-d650-42ce-aeb9-40ac711b1995",
+        "chatSessionId": "sess_25fbc49d-1b3a-4a49-a32b-be5456f9b855",
+        "timestamp": 1787494308170
+      },
+      {
+        "executionId": "87c9ccd1-d650-42ce-aeb9-40ac711b1995",
+        "chatSessionId": "sess_25fbc49d-1b3a-4a49-a32b-be5456f9b855",
+        "timestamp": 1787494533367
+      },
+      {
+        "executionId": "87c9ccd1-d650-42ce-aeb9-40ac711b1995",
+        "chatSessionId": "sess_25fbc49d-1b3a-4a49-a32b-be5456f9b855",
+        "timestamp": 1787494657748
+      }
+    ],
+    "1.3 修改 LOAD_DATA reducer 正規化舊資料": [
+      {
+        "executionId": "87c9ccd1-d650-42ce-aeb9-40ac711b1995",
+        "chatSessionId": "sess_25fbc49d-1b3a-4a49-a32b-be5456f9b855",
+        "timestamp": 1787494308210
+      },
+      {
+        "executionId": "87c9ccd1-d650-42ce-aeb9-40ac711b1995",
+        "chatSessionId": "sess_25fbc49d-1b3a-4a49-a32b-be5456f9b855",
+        "timestamp": 1787494534015
+      },
+      {
+        "executionId": "87c9ccd1-d650-42ce-aeb9-40ac711b1995",
+        "chatSessionId": "sess_25fbc49d-1b3a-4a49-a32b-be5456f9b855",
+        "timestamp": 1787494659047
+      }
+    ],
+    "2.1 新增 groupByDistrict 函式": [
+      {
+        "executionId": "87c9ccd1-d650-42ce-aeb9-40ac711b1995",
+        "chatSessionId": "sess_25fbc49d-1b3a-4a49-a32b-be5456f9b855",
+        "timestamp": 1787494308259
+      },
+      {
+        "executionId": "87c9ccd1-d650-42ce-aeb9-40ac711b1995",
+        "chatSessionId": "sess_25fbc49d-1b3a-4a49-a32b-be5456f9b855",
+        "timestamp": 1787494664445
+      },
+      {
+        "executionId": "87c9ccd1-d650-42ce-aeb9-40ac711b1995",
+        "chatSessionId": "sess_25fbc49d-1b3a-4a49-a32b-be5456f9b855",
+        "timestamp": 1787494785089
+      }
+    ],
+    "2.3 在 RestaurantListPage 加入「依地區分組」選項": [
+      {
+        "executionId": "87c9ccd1-d650-42ce-aeb9-40ac711b1995",
+        "chatSessionId": "sess_25fbc49d-1b3a-4a49-a32b-be5456f9b855",
+        "timestamp": 1787494308294
+      },
+      {
+        "executionId": "87c9ccd1-d650-42ce-aeb9-40ac711b1995",
+        "chatSessionId": "sess_25fbc49d-1b3a-4a49-a32b-be5456f9b855",
+        "timestamp": 1787494794034
+      },
+      {
+        "executionId": "87c9ccd1-d650-42ce-aeb9-40ac711b1995",
+        "chatSessionId": "sess_25fbc49d-1b3a-4a49-a32b-be5456f9b855",
+        "timestamp": 1787494834539
+      }
+    ],
+    "3. Checkpoint - 地區分組功能驗證": [
+      {
+        "executionId": "87c9ccd1-d650-42ce-aeb9-40ac711b1995",
+        "chatSessionId": "sess_25fbc49d-1b3a-4a49-a32b-be5456f9b855",
+        "timestamp": 1787494308328
+      },
+      {
+        "executionId": "87c9ccd1-d650-42ce-aeb9-40ac711b1995",
+        "chatSessionId": "sess_25fbc49d-1b3a-4a49-a32b-be5456f9b855",
+        "timestamp": 1787494872352
+      },
+      {
+        "executionId": "87c9ccd1-d650-42ce-aeb9-40ac711b1995",
+        "chatSessionId": "sess_25fbc49d-1b3a-4a49-a32b-be5456f9b855",
+        "timestamp": 1787494912294
+      }
+    ],
+    "4.1 建立 routeUtils.ts": [
+      {
+        "executionId": "87c9ccd1-d650-42ce-aeb9-40ac711b1995",
+        "chatSessionId": "sess_25fbc49d-1b3a-4a49-a32b-be5456f9b855",
+        "timestamp": 1787494308362
+      },
+      {
+        "executionId": "87c9ccd1-d650-42ce-aeb9-40ac711b1995",
+        "chatSessionId": "sess_25fbc49d-1b3a-4a49-a32b-be5456f9b855",
+        "timestamp": 1787494666111
+      },
+      {
+        "executionId": "87c9ccd1-d650-42ce-aeb9-40ac711b1995",
+        "chatSessionId": "sess_25fbc49d-1b3a-4a49-a32b-be5456f9b855",
+        "timestamp": 1787494785697
+      }
+    ],
+    "5. Checkpoint - 路線工具函式驗證": [
+      {
+        "executionId": "87c9ccd1-d650-42ce-aeb9-40ac711b1995",
+        "chatSessionId": "sess_25fbc49d-1b3a-4a49-a32b-be5456f9b855",
+        "timestamp": 1787494308395
+      },
+      {
+        "executionId": "87c9ccd1-d650-42ce-aeb9-40ac711b1995",
+        "chatSessionId": "sess_25fbc49d-1b3a-4a49-a32b-be5456f9b855",
+        "timestamp": 1787494914049
+      },
+      {
+        "executionId": "87c9ccd1-d650-42ce-aeb9-40ac711b1995",
+        "chatSessionId": "sess_25fbc49d-1b3a-4a49-a32b-be5456f9b855",
+        "timestamp": 1787494919489
+      }
+    ],
+    "6.1 建立 RoutePage 元件": [
+      {
+        "executionId": "87c9ccd1-d650-42ce-aeb9-40ac711b1995",
+        "chatSessionId": "sess_25fbc49d-1b3a-4a49-a32b-be5456f9b855",
+        "timestamp": 1787494308430
+      },
+      {
+        "executionId": "87c9ccd1-d650-42ce-aeb9-40ac711b1995",
+        "chatSessionId": "sess_25fbc49d-1b3a-4a49-a32b-be5456f9b855",
+        "timestamp": 1787494924412
+      },
+      {
+        "executionId": "87c9ccd1-d650-42ce-aeb9-40ac711b1995",
+        "chatSessionId": "sess_25fbc49d-1b3a-4a49-a32b-be5456f9b855",
+        "timestamp": 1787495039671
+      }
+    ],
+    "6.2 整合路線頁面到導航與路由": [
+      {
+        "executionId": "87c9ccd1-d650-42ce-aeb9-40ac711b1995",
+        "chatSessionId": "sess_25fbc49d-1b3a-4a49-a32b-be5456f9b855",
+        "timestamp": 1787494308484
+      },
+      {
+        "executionId": "87c9ccd1-d650-42ce-aeb9-40ac711b1995",
+        "chatSessionId": "sess_25fbc49d-1b3a-4a49-a32b-be5456f9b855",
+        "timestamp": 1787495040665
+      },
+      {
+        "executionId": "87c9ccd1-d650-42ce-aeb9-40ac711b1995",
+        "chatSessionId": "sess_25fbc49d-1b3a-4a49-a32b-be5456f9b855",
+        "timestamp": 1787495184819
+      }
+    ],
+    "8. Final checkpoint - 全功能整合驗證": [
+      {
+        "executionId": "87c9ccd1-d650-42ce-aeb9-40ac711b1995",
+        "chatSessionId": "sess_25fbc49d-1b3a-4a49-a32b-be5456f9b855",
+        "timestamp": 1787494308518
+      },
+      {
+        "executionId": "87c9ccd1-d650-42ce-aeb9-40ac711b1995",
+        "chatSessionId": "sess_25fbc49d-1b3a-4a49-a32b-be5456f9b855",
+        "timestamp": 1787495190205
+      },
+      {
+        "executionId": "87c9ccd1-d650-42ce-aeb9-40ac711b1995",
+        "chatSessionId": "sess_25fbc49d-1b3a-4a49-a32b-be5456f9b855",
+        "timestamp": 1787495256857
+      }
+    ],
+    "1. 擴充資料模型與 Places API": [
+      {
+        "executionId": "87c9ccd1-d650-42ce-aeb9-40ac711b1995",
+        "chatSessionId": "sess_25fbc49d-1b3a-4a49-a32b-be5456f9b855",
+        "timestamp": 1787494659082
+      }
+    ],
+    "4. 實作路線工具函式": [
+      {
+        "executionId": "87c9ccd1-d650-42ce-aeb9-40ac711b1995",
+        "chatSessionId": "sess_25fbc49d-1b3a-4a49-a32b-be5456f9b855",
+        "timestamp": 1787494785749
+      }
+    ],
+    "2. 實作地區分組功能": [
+      {
+        "executionId": "87c9ccd1-d650-42ce-aeb9-40ac711b1995",
+        "chatSessionId": "sess_25fbc49d-1b3a-4a49-a32b-be5456f9b855",
+        "timestamp": 1787494834575
+      }
+    ],
+    "6. 實作路線規劃頁面": [
+      {
+        "executionId": "87c9ccd1-d650-42ce-aeb9-40ac711b1995",
+        "chatSessionId": "sess_25fbc49d-1b3a-4a49-a32b-be5456f9b855",
+        "timestamp": 1787495184855
+      }
+    ]
+  }
+}

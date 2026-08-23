@@ -18,7 +18,11 @@ export interface Restaurant {
   budgetLevel: BudgetLevel | null; // 由 avgCost 衍生或手動設定
   recommendedDishes: string[];   // 每筆最多 50 字元，最多 10 筆
   notes: string;                 // 最多 500 字元
+  address: string;               // 地址，可從 Places API 帶入或手動輸入
   tagIds: string[];              // 最多 10 個 Tag ID
+  latitude: number | null;       // 緯度，從 Places API location 取得
+  longitude: number | null;      // 經度，從 Places API location 取得
+  district: string | null;       // 行政區名稱，例如「大安區」「信義區」
   createdAt: string;             // ISO 8601 timestamp
   updatedAt: string;             // ISO 8601 timestamp
 }
@@ -33,7 +37,16 @@ export interface RestaurantFormData {
   recommendedDishes: string[];
   notes: string;
   tagIds: string[];
+  address?: string;
+  // Optional location fields (from Places API)
+  latitude?: number | null;
+  longitude?: number | null;
+  district?: string | null;
 }
+
+// === 分組模式 ===
+
+export type GroupMode = 'status' | 'budget' | 'tag' | 'district';
 
 // === 篩選狀態 ===
 
@@ -74,6 +87,7 @@ export interface AppState {
   restaurants: Restaurant[];
   tags: Tag[];
   filters: FilterState;
+  selectedRestaurantIds: string[];
   currentPage: 'list' | 'roulette' | 'calories' | 'chat';
   ui: {
     isFormOpen: boolean;
@@ -96,7 +110,9 @@ export type AppAction =
   | { type: 'RESET_FILTERS' }
   | { type: 'NAVIGATE'; payload: { page: 'list' | 'roulette' | 'calories' | 'chat' } }
   | { type: 'SET_UI'; payload: Partial<AppState['ui']> }
-  | { type: 'LOAD_DATA'; payload: { restaurants: Restaurant[]; tags: Tag[] } };
+  | { type: 'LOAD_DATA'; payload: { restaurants: Restaurant[]; tags: Tag[] } }
+  | { type: 'TOGGLE_RESTAURANT_SELECTION'; payload: { id: string } }
+  | { type: 'CLEAR_SELECTION' };
 
 // === Storage Schema ===
 

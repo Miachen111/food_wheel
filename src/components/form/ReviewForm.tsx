@@ -34,6 +34,7 @@ export function ReviewForm({
   onAddNewTag,
 }: ReviewFormProps) {
   const [name, setName] = useState(initialData?.name ?? '');
+  const [address, setAddress] = useState(initialData?.address ?? '');
   const [status, setStatus] = useState<RestaurantStatus>(initialData?.status ?? 'VISITED');
   const [rating, setRating] = useState<number | null>(initialData?.rating ?? null);
   const [avgCost, setAvgCost] = useState<string>(
@@ -87,6 +88,7 @@ export function ReviewForm({
 
   const handlePlaceSelect = (place: { name: string; address: string; rating: number | null; placeId: string }) => {
     setName(place.name);
+    setAddress(place.address);
     if (place.rating !== null) {
       // Round to nearest 0.5
       setRating(Math.round(place.rating * 2) / 2);
@@ -122,6 +124,7 @@ export function ReviewForm({
       recommendedDishes: status === 'WISH_LIST' ? [] : recommendedDishes,
       notes: notes.trim(),
       tagIds,
+      address: address.trim(),
     };
 
     onSubmit(formData);
@@ -168,6 +171,22 @@ export function ReviewForm({
             {errors.name && (
               <p className="mt-1 text-sm text-red-600">{errors.name}</p>
             )}
+          </div>
+
+          {/* Address field */}
+          <div>
+            <label htmlFor="restaurant-address" className="block text-sm font-medium text-gray-700 mb-1">
+              地址
+            </label>
+            <input
+              id="restaurant-address"
+              type="text"
+              value={address}
+              onChange={(e) => setAddress(e.target.value)}
+              placeholder="例：台北市大安區忠孝東路四段..."
+              className="w-full border border-gray-300 rounded-md px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
+            />
+            <p className="mt-1 text-xs text-gray-400">從 Google Maps 搜尋會自動帶入，也可手動輸入</p>
           </div>
 
           {/* Status toggle */}
