@@ -1,6 +1,6 @@
-const API_KEY = import.meta.env.VITE_GEMINI_API_KEY;
-const BASE_URL = 'https://generativelanguage.googleapis.com/v1beta';
-const MODEL = 'models/gemini-3.6-flash';
+const SUPABASE_URL = (import.meta.env.VITE_SUPABASE_URL || '').trim();
+const SUPABASE_ANON_KEY = (import.meta.env.VITE_SUPABASE_ANON_KEY || '').trim();
+const FUNCTION_URL = `${SUPABASE_URL}/functions/v1/gemini-proxy`;
 
 interface GeminiPart {
   text?: string;
@@ -15,6 +15,33 @@ interface GeminiMessage {
   parts: GeminiPart[];
 }
 
+async function callGeminiProxy(
+  action: string,
+  contents: GeminiMessage[],
+  generationConfig: Record<string, unknown>
+): Promise<unknown> {
+  if (!SUPABASE_URL || !SUPABASE_ANON_KEY) {
+    throw new Error('Supabase 設定缺失，請確認環境變數');
+  }
+
+  const response = await fetch(FUNCTION_URL, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'apikey': SUPABASE_ANON_KEY,
+      'Authorization': `Bearer ${SUPABASE_ANON_KEY}`,
+    },
+    body: JSON.stringify({ action, contents, generationConfig }),
+  });
+
+  if (!response.ok) {
+    const error = await response.json().catch(() => ({ error: '未知錯誤' }));
+    throw new Error(error.error || `API 錯誤 (${response.status})`);
+  }
+
+  return response.json();
+}
+
 /**
  * 分析食物照片/描述，回傳熱量估算
  */
@@ -24,7 +51,6 @@ export async function analyzeCalories(
 ): Promise<string> {
   const parts: GeminiPart[] = [];
 
-  // System instruction embedded in the prompt
   parts.push({
     text: `你是一位專業的營養師 AI 助手。請分析以下食物並估算熱量。
 
@@ -46,9 +72,7 @@ export async function analyzeCalories(
 - summary 請用繁體中文，給出實用的飲食建議`,
   });
 
-  // Add image if provided
   if (imageBase64) {
-    // imageBase64 is a data URL like "data:image/jpeg;base64,/9j/4AAQ..."
     const matches = imageBase64.match(/^data:(.+?);base64,(.+)$/);
     if (matches && matches[1] && matches[2]) {
       parts.push({
@@ -60,43 +84,27 @@ export async function analyzeCalories(
     }
   }
 
-  // Add text description
   if (description.trim()) {
     parts.push({ text: `食物描述：${description}` });
   } else if (!imageBase64) {
     throw new Error('請提供照片或文字描述');
   }
 
-  const response = await fetch(`${BASE_URL}/${MODEL}:generateContent?key=${API_KEY}`, {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({
-      contents: [{ role: 'user', parts }],
-      generationConfig: {
-        temperature: 0.3,
-        maxOutputTokens: 4096,
-        responseMimeType: 'application/json',
-      },
-    }),
-  });
+  const data = await callGeminiProxy(
+    'analyzeCalories',
+    [{ role: 'user', parts }],
+    { temperature: 0.3, maxOutputTokens: 4096, responseMimeType: 'application/json' }
+  ) as { candidates?: { content?: { parts?: { text?: string }[] } }[] };
 
-  if (!response.ok) {
-    const error = await response.text();
-    console.error('[geminiService] Calorie analysis error:', error);
-    throw new Error(`Gemini API 錯誤 (${response.status})`);
-  }
-
-  const data = await response.json();
   console.log('[geminiService] Calorie raw response:', JSON.stringify(data, null, 2));
-  
-  // Combine all text parts from the response
+
   const parts_response = data.candidates?.[0]?.content?.parts;
   if (!parts_response || parts_response.length === 0) {
     throw new Error('Gemini 未回傳有效結果');
   }
-  
-  const text = parts_response.map((p: { text?: string }) => p.text || '').join('');
-  
+
+  const text = parts_response.map((p) => p.text || '').join('');
+
   if (!text) {
     throw new Error('Gemini 未回傳有效結果');
   }
@@ -127,54 +135,36 @@ export async function chat(
 - 給出具體可行的建議`,
   };
 
-  // Build conversation history
   const contents: GeminiMessage[] = [];
 
-  // First message includes system prompt
   if (messages.length === 0) {
     contents.push({
       role: 'user',
       parts: [systemPrompt, { text: userMessage }],
     });
   } else {
-    // Include history with system prompt in the first user message
     const firstMsg = messages[0]!;
     contents.push({
       role: 'user',
       parts: [systemPrompt, ...firstMsg.parts],
     });
 
-    // Add rest of history
     for (let i = 1; i < messages.length; i++) {
       contents.push(messages[i]!);
     }
 
-    // Add new user message
     contents.push({
       role: 'user',
       parts: [{ text: userMessage }],
     });
   }
 
-  const response = await fetch(`${BASE_URL}/${MODEL}:generateContent?key=${API_KEY}`, {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({
-      contents,
-      generationConfig: {
-        temperature: 0.7,
-        maxOutputTokens: 2048,
-      },
-    }),
-  });
+  const data = await callGeminiProxy(
+    'chat',
+    contents,
+    { temperature: 0.7, maxOutputTokens: 2048 }
+  ) as { candidates?: { content?: { parts?: { text?: string }[] } }[] };
 
-  if (!response.ok) {
-    const error = await response.text();
-    console.error('[geminiService] Chat error:', error);
-    throw new Error(`Gemini API 錯誤 (${response.status})`);
-  }
-
-  const data = await response.json();
   const text = data.candidates?.[0]?.content?.parts?.[0]?.text;
 
   if (!text) {

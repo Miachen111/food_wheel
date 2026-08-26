@@ -4,12 +4,13 @@ import {
   useReducer,
   useEffect,
   useRef,
+  useState,
   type ReactNode,
 } from 'react';
 import type { AppState, AppAction } from '../types';
 import { DEFAULT_FILTER } from '../types';
 import { appReducer } from './appReducer';
-import { isInitialized, loadData, saveData, markInitialized } from '../services/dataService';
+import { loadData, saveData } from '../services/dataService';
 
 // === Initial State ===
 
@@ -34,6 +35,7 @@ const initialState: AppState = {
 interface AppContextValue {
   state: AppState;
   dispatch: React.Dispatch<AppAction>;
+  isLoading: boolean;
 }
 
 const AppContext = createContext<AppContextValue | null>(null);
@@ -46,32 +48,56 @@ interface AppProviderProps {
 
 export function AppProvider({ children }: AppProviderProps) {
   const [state, dispatch] = useReducer(appReducer, initialState);
+  const [isLoading, setIsLoading] = useState(true);
   const isFirstRender = useRef(true);
+  const prevRestaurantsRef = useRef<string>('');
+  const prevTagsRef = useRef<string>('');
 
-  // On mount: load data from localStorage or initialize with dummy data
+  // On mount: load data from Supabase
   useEffect(() => {
-    if (isInitialized()) {
-      const data = loadData();
-      if (data) {
-        dispatch({ type: 'LOAD_DATA', payload: data });
+    async function init() {
+      try {
+        const data = await loadData();
+        if (data) {
+          dispatch({ type: 'LOAD_DATA', payload: data });
+        }
+      } catch (error) {
+        console.error('[AppContext] Failed to load data:', error);
+      } finally {
+        setIsLoading(false);
       }
-    } else {
-      // First time: start with empty data
-      markInitialized();
     }
+    init();
   }, []);
 
-  // Persist state changes to localStorage (skip initial render)
+  // Persist state changes to Supabase (skip initial render, debounce)
   useEffect(() => {
     if (isFirstRender.current) {
       isFirstRender.current = false;
       return;
     }
-    saveData(state.restaurants, state.tags);
+
+    // Only save if data actually changed
+    const restaurantsJson = JSON.stringify(state.restaurants);
+    const tagsJson = JSON.stringify(state.tags);
+
+    if (restaurantsJson === prevRestaurantsRef.current && tagsJson === prevTagsRef.current) {
+      return;
+    }
+
+    prevRestaurantsRef.current = restaurantsJson;
+    prevTagsRef.current = tagsJson;
+
+    // Debounce saves to avoid excessive API calls
+    const timeoutId = setTimeout(() => {
+      saveData(state.restaurants, state.tags);
+    }, 500);
+
+    return () => clearTimeout(timeoutId);
   }, [state.restaurants, state.tags]);
 
   return (
-    <AppContext.Provider value={{ state, dispatch }}>
+    <AppContext.Provider value={{ state, dispatch, isLoading }}>
       {children}
     </AppContext.Provider>
   );

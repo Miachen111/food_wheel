@@ -1,4 +1,6 @@
-const API_KEY = import.meta.env.VITE_GOOGLE_MAPS_API_KEY;
+const SUPABASE_URL = (import.meta.env.VITE_SUPABASE_URL || '').trim();
+const SUPABASE_ANON_KEY = (import.meta.env.VITE_SUPABASE_ANON_KEY || '').trim();
+const FUNCTION_URL = `${SUPABASE_URL}/functions/v1/places-proxy`;
 
 export interface PlacePrediction {
   placeId: string;
@@ -47,79 +49,81 @@ export interface LocationBias {
 
 /**
  * 從 addressComponents 中萃取行政區名稱
- * 優先取 sublocality_level_1（如台北市的「大安區」）
- * 備選 administrative_area_level_3
- * 都找不到回傳 null
+ * 格式：「台北市信義區」「桃園市桃園區」
  */
 export function extractDistrict(addressComponents: AddressComponent[]): string | null {
-  const sublocalityLevel1 = addressComponents.find((c) =>
-    c.types.includes('sublocality_level_1')
+  // 取得城市/縣（如：台北市、桃園市、新北市）
+  const city = addressComponents.find((c) =>
+    c.types.includes('administrative_area_level_1')
   );
-  if (sublocalityLevel1) return sublocalityLevel1.longText;
 
-  const adminLevel3 = addressComponents.find((c) =>
+  // 取得區（如：信義區、大安區、桃園區）
+  const district = addressComponents.find((c) =>
+    c.types.includes('sublocality_level_1')
+  ) || addressComponents.find((c) =>
     c.types.includes('administrative_area_level_3')
   );
-  if (adminLevel3) return adminLevel3.longText;
+
+  if (city && district) {
+    return `${city.longText}${district.longText}`;
+  }
+  if (district) {
+    return district.longText;
+  }
+  if (city) {
+    return city.longText;
+  }
 
   return null;
 }
 
+async function callPlacesProxy(action: string, params: Record<string, unknown>): Promise<unknown> {
+  if (!SUPABASE_URL || !SUPABASE_ANON_KEY) {
+    throw new Error('Supabase 設定缺失，請確認環境變數');
+  }
+
+  const response = await fetch(FUNCTION_URL, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'apikey': SUPABASE_ANON_KEY,
+      'Authorization': `Bearer ${SUPABASE_ANON_KEY}`,
+    },
+    body: JSON.stringify({ action, params }),
+  });
+
+  if (!response.ok) {
+    const error = await response.json().catch(() => ({ error: '未知錯誤' }));
+    throw new Error(error.error || `API 錯誤 (${response.status})`);
+  }
+
+  return response.json();
+}
+
 /**
- * 根據 photo resource name 產生照片 URL
+ * 根據 photo resource name 產生照片 URL（透過 proxy）
  */
 export function getPhotoUrl(photoName: string, maxWidth: number = 400): string {
-  if (!API_KEY) return '';
-  return `https://places.googleapis.com/v1/${photoName}/media?maxWidthPx=${maxWidth}&key=${API_KEY}`;
+  if (!SUPABASE_URL || !SUPABASE_ANON_KEY) return '';
+  return `${FUNCTION_URL}?action=photo&photoName=${encodeURIComponent(photoName)}&maxWidth=${maxWidth}&authorization=${encodeURIComponent(SUPABASE_ANON_KEY)}`;
 }
 
 /**
  * 使用 Places API (New) 的 Autocomplete 搜尋餐廳
- * https://developers.google.com/maps/documentation/places/web-service/place-autocomplete
  */
 export async function searchPlaces(
   input: string,
   locationBias?: LocationBias
 ): Promise<PlacePrediction[]> {
-  if (!API_KEY || input.trim().length < 2) return [];
+  if (!SUPABASE_URL || input.trim().length < 2) return [];
 
   try {
-    const body: Record<string, unknown> = {
-      input,
-      includedPrimaryTypes: ['restaurant', 'food', 'cafe', 'meal_takeaway', 'meal_delivery'],
-      languageCode: 'zh-TW',
-    };
-
+    const params: Record<string, unknown> = { input };
     if (locationBias) {
-      body.locationBias = {
-        circle: {
-          center: {
-            latitude: locationBias.latitude,
-            longitude: locationBias.longitude,
-          },
-          radius: 5000.0,
-        },
-      };
+      params.locationBias = locationBias;
     }
 
-    const response = await fetch(
-      'https://places.googleapis.com/v1/places:autocomplete',
-      {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'X-Goog-Api-Key': API_KEY,
-        },
-        body: JSON.stringify(body),
-      }
-    );
-
-    if (!response.ok) {
-      console.warn('[placesApi] Autocomplete error:', response.status, await response.text());
-      return [];
-    }
-
-    const data = await response.json();
+    const data = await callPlacesProxy('autocomplete', params) as { suggestions?: any[] };
 
     if (!data.suggestions) return [];
 
@@ -137,32 +141,13 @@ export async function searchPlaces(
 }
 
 /**
- * 使用 Places API (New) 取得地點詳細資料（含照片、價格、營業時間等）
- * https://developers.google.com/maps/documentation/places/web-service/place-details
+ * 使用 Places API (New) 取得地點詳細資料
  */
 export async function getPlaceDetails(placeId: string): Promise<PlaceDetails | null> {
-  if (!API_KEY) return null;
+  if (!SUPABASE_URL) return null;
 
   try {
-    const response = await fetch(
-      `https://places.googleapis.com/v1/places/${placeId}`,
-      {
-        method: 'GET',
-        headers: {
-          'Content-Type': 'application/json',
-          'X-Goog-Api-Key': API_KEY,
-          'X-Goog-FieldMask':
-            'displayName,formattedAddress,rating,id,photos,priceLevel,currentOpeningHours,userRatingCount,googleMapsUri,types,location,addressComponents',
-        },
-      }
-    );
-
-    if (!response.ok) {
-      console.warn('[placesApi] Details error:', response.status, await response.text());
-      return null;
-    }
-
-    const data = await response.json();
+    const data = await callPlacesProxy('details', { placeId }) as Record<string, any>;
 
     const photos: PlacePhoto[] = (data.photos || []).map((p: any) => ({
       name: p.name || '',
