@@ -58,10 +58,12 @@ export function extractDistrict(addressComponents: AddressComponent[]): string |
   );
 
   // 取得區（如：信義區、大安區、桃園區）
+  // 優先用 administrative_area_level_2（台灣的區通常在這裡）
+  // 其次用 sublocality_level_1（但排除名稱包含「里」的）
   const district = addressComponents.find((c) =>
-    c.types.includes('sublocality_level_1')
+    c.types.includes('administrative_area_level_2')
   ) || addressComponents.find((c) =>
-    c.types.includes('administrative_area_level_3')
+    c.types.includes('sublocality_level_1') && !c.longText.endsWith('里')
   );
 
   if (city && district) {
