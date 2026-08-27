@@ -66,7 +66,7 @@ export const ResultModal = ({
         className="fixed bottom-0 left-0 right-0 bg-white rounded-t-2xl max-h-[90vh] overflow-y-auto md:static md:max-w-[560px] md:mx-auto md:mt-[10vh] md:rounded-2xl md:max-h-none"
       >
         <div className="flex justify-center pt-3 pb-2 md:hidden"><div className="w-10 h-1 bg-gray-300 rounded-full" /></div>
-        <div className="p-6 flex flex-col gap-4">
+        <div className="p-6 pb-24 md:pb-6 flex flex-col gap-4">
           {/* Restaurant Name */}
           <h2 className="text-2xl font-bold text-gray-900">
             {restaurant.name}

@@ -85,49 +85,51 @@ export function RestaurantListPage() {
 
   return (
     <div className="p-4">
-      <div className="flex items-center justify-between mb-4">
-        <h1 className="text-xl font-bold text-gray-900">我的美食清單</h1>
+      <div className="flex flex-col gap-3 mb-4">
+        <div className="flex items-center justify-between">
+          <h1 className="text-xl font-bold text-gray-900">我的美食清單</h1>
+          <div className="flex items-center gap-2">
+            <button
+              type="button"
+              onClick={() => setIsExploreOpen(true)}
+              className="min-w-[44px] min-h-[44px] inline-flex items-center justify-center px-3 py-2 border border-indigo-600 text-indigo-600 font-medium rounded-md hover:bg-indigo-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition-colors"
+              aria-label="探索餐廳"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                strokeWidth={2}
+                stroke="currentColor"
+                className="w-4 h-4 mr-1"
+                aria-hidden="true"
+              >
+                <path strokeLinecap="round" strokeLinejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z" />
+                <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z" />
+              </svg>
+              探索
+            </button>
+            <button
+              type="button"
+              onClick={handleAdd}
+              className="min-w-[44px] min-h-[44px] inline-flex items-center justify-center px-3 py-2 bg-indigo-600 text-white font-medium rounded-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition-colors"
+              aria-label="新增餐廳"
+            >
+              新增
+            </button>
+          </div>
+        </div>
         <select
           value={groupMode}
           onChange={(e) => setGroupMode(e.target.value as GroupMode)}
           aria-label="分組方式"
-          className="min-h-[44px] px-3 py-2 border border-gray-300 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
+          className="w-full min-h-[44px] px-3 py-2 border border-gray-300 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
         >
           <option value="status">依狀態分組</option>
           <option value="budget">依預算分組</option>
           <option value="tag">依標籤分組</option>
           <option value="district">依地區分組</option>
         </select>
-        <div className="flex items-center gap-2">
-          <button
-            type="button"
-            onClick={() => setIsExploreOpen(true)}
-            className="min-w-[44px] min-h-[44px] inline-flex items-center justify-center px-3 py-2 border border-indigo-600 text-indigo-600 font-medium rounded-md hover:bg-indigo-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition-colors"
-            aria-label="探索餐廳"
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              strokeWidth={2}
-              stroke="currentColor"
-              className="w-4 h-4 mr-1"
-              aria-hidden="true"
-            >
-              <path strokeLinecap="round" strokeLinejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z" />
-              <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z" />
-            </svg>
-            探索
-          </button>
-          <button
-            type="button"
-            onClick={handleAdd}
-            className="min-w-[44px] min-h-[44px] inline-flex items-center justify-center px-3 py-2 bg-indigo-600 text-white font-medium rounded-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition-colors"
-            aria-label="新增餐廳"
-          >
-            新增
-          </button>
-        </div>
       </div>
 
       {/* 關鍵字搜尋 */}
@@ -183,14 +185,46 @@ export function RestaurantListPage() {
         </div>
       ) : (
         <div className="flex flex-col gap-6">
+          {state.selectedRestaurantIds.length > 0 && (
+            <div className="flex items-center justify-between">
+              <span className="text-sm text-gray-600">
+                已選取 <span className="font-medium">{state.selectedRestaurantIds.length}</span> 間
+              </span>
+              <button
+                type="button"
+                onClick={() => dispatch({ type: 'CLEAR_SELECTION' })}
+                className="text-sm text-red-600 hover:text-red-800 font-medium transition-colors"
+              >
+                清空選取
+              </button>
+            </div>
+          )}
           {groups.map((group) => (
             <section key={group.key} aria-labelledby={`group-${group.key}`}>
-              <h2
-                id={`group-${group.key}`}
-                className="text-lg font-semibold text-gray-800 mb-3"
-              >
-                {group.label}
-              </h2>
+              <div className="flex items-center justify-between mb-3">
+                <h2
+                  id={`group-${group.key}`}
+                  className="text-lg font-semibold text-gray-800"
+                >
+                  {group.label}
+                </h2>
+                <div className="flex gap-2">
+                  <button
+                    type="button"
+                    onClick={() => dispatch({ type: 'SELECT_GROUP', payload: { ids: group.restaurants.map(r => r.id) } })}
+                    className="text-xs text-indigo-600 hover:text-indigo-800 font-medium transition-colors min-h-[32px] px-2"
+                  >
+                    全選
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => dispatch({ type: 'DESELECT_GROUP', payload: { ids: group.restaurants.map(r => r.id) } })}
+                    className="text-xs text-gray-500 hover:text-gray-700 font-medium transition-colors min-h-[32px] px-2"
+                  >
+                    取消全選
+                  </button>
+                </div>
+              </div>
               <div className="flex flex-col gap-4">
                 {group.restaurants.map((restaurant) => (
                   <div key={restaurant.id} className="flex items-start gap-2">

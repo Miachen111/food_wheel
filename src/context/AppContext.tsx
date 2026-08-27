@@ -5,12 +5,13 @@ import {
   useEffect,
   useRef,
   useState,
+  useCallback,
   type ReactNode,
 } from 'react';
 import type { AppState, AppAction } from '../types';
 import { DEFAULT_FILTER } from '../types';
 import { appReducer } from './appReducer';
-import { loadData, saveData } from '../services/dataService';
+import { loadData, saveData, deleteRestaurant } from '../services/dataService';
 
 // === Initial State ===
 
@@ -70,6 +71,16 @@ export function AppProvider({ children }: AppProviderProps) {
     init();
   }, []);
 
+  // Enhanced dispatch that handles DB-side deletions
+  const enhancedDispatch = useCallback((action: AppAction) => {
+    if (action.type === 'DELETE_RESTAURANT') {
+      deleteRestaurant(action.payload.id).catch((error) => {
+        console.error('[AppContext] Failed to delete restaurant from DB:', error);
+      });
+    }
+    dispatch(action);
+  }, []);
+
   // Persist state changes to Supabase (skip initial render, debounce)
   useEffect(() => {
     if (isFirstRender.current) {
@@ -97,7 +108,7 @@ export function AppProvider({ children }: AppProviderProps) {
   }, [state.restaurants, state.tags]);
 
   return (
-    <AppContext.Provider value={{ state, dispatch, isLoading }}>
+    <AppContext.Provider value={{ state, dispatch: enhancedDispatch, isLoading }}>
       {children}
     </AppContext.Provider>
   );

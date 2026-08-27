@@ -99,6 +99,26 @@ export function appReducer(state: AppState, action: AppAction): AppState {
       };
     }
 
+    case 'SELECT_GROUP': {
+      const newIds = action.payload.ids.filter(
+        (id) => !state.selectedRestaurantIds.includes(id)
+      );
+      return {
+        ...state,
+        selectedRestaurantIds: [...state.selectedRestaurantIds, ...newIds],
+      };
+    }
+
+    case 'DESELECT_GROUP': {
+      const idsToRemove = new Set(action.payload.ids);
+      return {
+        ...state,
+        selectedRestaurantIds: state.selectedRestaurantIds.filter(
+          (id) => !idsToRemove.has(id)
+        ),
+      };
+    }
+
     case 'ADD_TAG': {
       const trimmedName = action.payload.name.trim();
       const exists = state.tags.some(

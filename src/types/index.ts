@@ -112,7 +112,9 @@ export type AppAction =
   | { type: 'SET_UI'; payload: Partial<AppState['ui']> }
   | { type: 'LOAD_DATA'; payload: { restaurants: Restaurant[]; tags: Tag[] } }
   | { type: 'TOGGLE_RESTAURANT_SELECTION'; payload: { id: string } }
-  | { type: 'CLEAR_SELECTION' };
+  | { type: 'CLEAR_SELECTION' }
+  | { type: 'SELECT_GROUP'; payload: { ids: string[] } }
+  | { type: 'DESELECT_GROUP'; payload: { ids: string[] } };
 
 // === Storage Schema ===
 
