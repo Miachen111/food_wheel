@@ -105,13 +105,13 @@ export function ExploreOverlay({ onClose }: ExploreOverlayProps) {
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/0 md:bg-black/50">
-    <div className="w-full h-full md:max-w-3xl md:h-[90vh] md:rounded-2xl md:shadow-2xl bg-white flex flex-col overflow-hidden">
+    <div className="w-full h-full md:max-w-3xl md:h-[90vh] md:rounded-2xl md:shadow-2xl bg-white dark:bg-gray-800 flex flex-col overflow-hidden">
       {/* Header */}
-      <header className="flex items-center gap-3 px-4 py-3 border-b border-gray-200 shrink-0">
+      <header className="flex items-center gap-3 px-4 py-3 border-b border-gray-200 dark:border-gray-700 shrink-0">
         <button
           type="button"
           onClick={onClose}
-          className="min-w-[44px] min-h-[44px] inline-flex items-center justify-center rounded-md hover:bg-gray-100 transition-colors"
+          className="min-w-[44px] min-h-[44px] inline-flex items-center justify-center rounded-md hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
           aria-label="關閉探索"
         >
           <svg
@@ -126,7 +126,7 @@ export function ExploreOverlay({ onClose }: ExploreOverlayProps) {
             <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
           </svg>
         </button>
-        <h1 className="text-lg font-bold text-gray-900">探索餐廳</h1>
+        <h1 className="text-lg font-bold text-gray-900 dark:text-gray-100">探索餐廳</h1>
       </header>
 
       {/* Search bar */}
@@ -134,7 +134,7 @@ export function ExploreOverlay({ onClose }: ExploreOverlayProps) {
         <div className="relative">
           {/* Map pin icon */}
           <svg
-            className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400"
+            className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400 dark:text-gray-500"
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
             viewBox="0 0 24 24"
@@ -150,14 +150,14 @@ export function ExploreOverlay({ onClose }: ExploreOverlayProps) {
             value={query}
             onChange={handleInputChange}
             placeholder="搜尋 Google Maps 上的餐廳..."
-            className="w-full border border-gray-300 rounded-md pl-9 pr-9 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
+            className="w-full border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100 placeholder-gray-400 dark:placeholder-gray-500 rounded-md pl-9 pr-9 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
             aria-label="搜尋餐廳"
           />
           {query && (
             <button
               type="button"
               onClick={handleClearSearch}
-              className="absolute right-2 top-1/2 -translate-y-1/2 min-w-[28px] min-h-[28px] inline-flex items-center justify-center rounded-full hover:bg-gray-100"
+              className="absolute right-2 top-1/2 -translate-y-1/2 min-w-[28px] min-h-[28px] inline-flex items-center justify-center rounded-full hover:bg-gray-100 dark:hover:bg-gray-700"
               aria-label="清除搜尋"
             >
               <svg
@@ -166,7 +166,7 @@ export function ExploreOverlay({ onClose }: ExploreOverlayProps) {
                 viewBox="0 0 24 24"
                 strokeWidth={2}
                 stroke="currentColor"
-                className="w-4 h-4 text-gray-400"
+                className="w-4 h-4 text-gray-400 dark:text-gray-500"
                 aria-hidden="true"
               >
                 <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
@@ -175,7 +175,7 @@ export function ExploreOverlay({ onClose }: ExploreOverlayProps) {
           )}
           {isSearching && (
             <svg
-              className="absolute right-3 top-1/2 -translate-y-1/2 animate-spin h-4 w-4 text-gray-400"
+              className="absolute right-3 top-1/2 -translate-y-1/2 animate-spin h-4 w-4 text-gray-400 dark:text-gray-500"
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
               viewBox="0 0 24 24"
@@ -192,18 +192,18 @@ export function ExploreOverlay({ onClose }: ExploreOverlayProps) {
       <div className="flex-1 overflow-y-auto px-4 pb-4">
         {/* Suggestions list */}
         {suggestions.length > 0 && !selectedPlace && (
-          <ul className="divide-y divide-gray-100">
+          <ul className="divide-y divide-gray-100 dark:divide-gray-700">
             {suggestions.map((prediction) => (
               <li key={prediction.placeId}>
                 <button
                   type="button"
                   onClick={() => handleSelectPrediction(prediction)}
-                  className="w-full text-left px-3 py-3 hover:bg-indigo-50 rounded-md transition-colors min-h-[44px]"
+                  className="w-full text-left px-3 py-3 hover:bg-indigo-50 dark:hover:bg-gray-700 rounded-md transition-colors min-h-[44px]"
                 >
-                  <p className="text-sm font-medium text-gray-800 truncate">
+                  <p className="text-sm font-medium text-gray-800 dark:text-gray-200 truncate">
                     {prediction.mainText}
                   </p>
-                  <p className="text-xs text-gray-500 truncate mt-0.5">
+                  <p className="text-xs text-gray-500 dark:text-gray-400 truncate mt-0.5">
                     {prediction.secondaryText}
                   </p>
                 </button>
@@ -225,13 +225,13 @@ export function ExploreOverlay({ onClose }: ExploreOverlayProps) {
               <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
               <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" />
             </svg>
-            <span className="ml-2 text-sm text-gray-500">載入中...</span>
+            <span className="ml-2 text-sm text-gray-500 dark:text-gray-400">載入中...</span>
           </div>
         )}
 
         {/* Place detail card */}
         {selectedPlace && !isLoadingDetails && (
-          <div className="rounded-xl border border-gray-200 overflow-hidden shadow-sm">
+          <div className="rounded-xl border border-gray-200 dark:border-gray-700 overflow-hidden shadow-sm">
             {/* Photo */}
             {selectedPlace.photos.length > 0 && selectedPlace.photos[0] && (
               <img
@@ -243,13 +243,13 @@ export function ExploreOverlay({ onClose }: ExploreOverlayProps) {
 
             <div className="p-4 space-y-3">
               {/* Name */}
-              <h2 className="text-lg font-bold text-gray-900">
+              <h2 className="text-lg font-bold text-gray-900 dark:text-gray-100">
                 {selectedPlace.name}
               </h2>
 
               {/* Address */}
               {selectedPlace.address && (
-                <p className="text-sm text-gray-600">{selectedPlace.address}</p>
+                <p className="text-sm text-gray-600 dark:text-gray-400">{selectedPlace.address}</p>
               )}
 
               {/* Rating + reviews */}
@@ -271,7 +271,7 @@ export function ExploreOverlay({ onClose }: ExploreOverlayProps) {
                     </svg>
                     <span className="font-medium">{selectedPlace.rating}</span>
                     {selectedPlace.userRatingCount !== null && (
-                      <span className="text-gray-500">
+                      <span className="text-gray-500 dark:text-gray-400">
                         ({selectedPlace.userRatingCount} 則評論)
                       </span>
                     )}
@@ -280,7 +280,7 @@ export function ExploreOverlay({ onClose }: ExploreOverlayProps) {
 
                 {/* Price level */}
                 {formatPriceLevel(selectedPlace.priceLevel) && (
-                  <span className="text-sm text-gray-600">
+                  <span className="text-sm text-gray-600 dark:text-gray-400">
                     {formatPriceLevel(selectedPlace.priceLevel)}
                   </span>
                 )}
@@ -290,8 +290,8 @@ export function ExploreOverlay({ onClose }: ExploreOverlayProps) {
                   <span
                     className={`text-sm font-medium ${
                       selectedPlace.currentOpeningHours.openNow
-                        ? 'text-green-600'
-                        : 'text-red-500'
+                        ? 'text-green-600 dark:text-green-400'
+                        : 'text-red-500 dark:text-red-400'
                     }`}
                   >
                     {selectedPlace.currentOpeningHours.openNow
@@ -307,7 +307,7 @@ export function ExploreOverlay({ onClose }: ExploreOverlayProps) {
                   {selectedPlace.types.slice(0, 5).map((type) => (
                     <span
                       key={type}
-                      className="px-2 py-0.5 text-xs bg-gray-100 text-gray-600 rounded-full"
+                      className="px-2 py-0.5 text-xs bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 rounded-full"
                     >
                       {type}
                     </span>
@@ -321,7 +321,7 @@ export function ExploreOverlay({ onClose }: ExploreOverlayProps) {
                   type="button"
                   onClick={handleAddToWishList}
                   disabled={addedPlaceIds.has(selectedPlace.placeId)}
-                  className="min-h-[44px] flex-1 inline-flex items-center justify-center px-4 py-2.5 bg-indigo-600 text-white font-medium rounded-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition-colors disabled:bg-gray-300 disabled:cursor-not-allowed"
+                  className="min-h-[44px] flex-1 inline-flex items-center justify-center px-4 py-2.5 bg-indigo-600 text-white font-medium rounded-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 dark:focus:ring-offset-gray-800 transition-colors disabled:bg-gray-300 dark:disabled:bg-gray-600 disabled:cursor-not-allowed"
                 >
                   {addedPlaceIds.has(selectedPlace.placeId)
                     ? '已加入清單'
@@ -333,7 +333,7 @@ export function ExploreOverlay({ onClose }: ExploreOverlayProps) {
                     href={selectedPlace.googleMapsUri}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="min-w-[44px] min-h-[44px] inline-flex items-center justify-center px-3 py-2.5 border border-gray-300 text-gray-700 font-medium rounded-md hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition-colors"
+                    className="min-w-[44px] min-h-[44px] inline-flex items-center justify-center px-3 py-2.5 border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-200 font-medium rounded-md hover:bg-gray-50 dark:hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 dark:focus:ring-offset-gray-800 transition-colors"
                   >
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
@@ -363,13 +363,13 @@ export function ExploreOverlay({ onClose }: ExploreOverlayProps) {
               viewBox="0 0 24 24"
               strokeWidth={1}
               stroke="currentColor"
-              className="w-12 h-12 text-gray-300 mb-3"
+              className="w-12 h-12 text-gray-300 dark:text-gray-600 mb-3"
               aria-hidden="true"
             >
               <path strokeLinecap="round" strokeLinejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z" />
               <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z" />
             </svg>
-            <p className="text-sm text-gray-500">
+            <p className="text-sm text-gray-500 dark:text-gray-400">
               搜尋附近的餐廳，探索新口味
             </p>
           </div>

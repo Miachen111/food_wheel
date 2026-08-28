@@ -59,16 +59,16 @@ export function ConfirmDialog({
       aria-labelledby="confirm-dialog-title"
       aria-describedby="confirm-dialog-message"
     >
-      <div className="bg-white rounded-lg shadow-xl mx-4 w-full max-w-sm p-6">
+      <div className="bg-white dark:bg-gray-800 rounded-lg shadow-xl mx-4 w-full max-w-sm p-6">
         <h2
           id="confirm-dialog-title"
-          className="text-lg font-bold text-gray-900 mb-2"
+          className="text-lg font-bold text-gray-900 dark:text-gray-100 mb-2"
         >
           {title}
         </h2>
         <p
           id="confirm-dialog-message"
-          className="text-gray-600 mb-6"
+          className="text-gray-600 dark:text-gray-400 mb-6"
         >
           {message}
         </p>
@@ -76,7 +76,7 @@ export function ConfirmDialog({
           <button
             type="button"
             onClick={onCancel}
-            className="min-w-[44px] min-h-[44px] px-4 py-2 rounded-md border border-gray-300 text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-gray-300 transition-colors"
+            className="min-w-[44px] min-h-[44px] px-4 py-2 rounded-md border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-200 bg-white dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-300 transition-colors"
           >
             {cancelLabel}
           </button>

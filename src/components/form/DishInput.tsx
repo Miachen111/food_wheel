@@ -50,7 +50,7 @@ export const DishInput: React.FC<DishInputProps> = ({ dishes, onChange }) => {
 
   return (
     <div className="space-y-2">
-      <label className="block text-sm font-medium text-gray-700">
+      <label className="block text-sm font-medium text-gray-700 dark:text-gray-200">
         推薦菜色
       </label>
 
@@ -60,13 +60,13 @@ export const DishInput: React.FC<DishInputProps> = ({ dishes, onChange }) => {
           {dishes.map((dish, index) => (
             <span
               key={index}
-              className="inline-flex items-center px-3 py-1 rounded-full text-sm bg-gray-100 text-gray-800"
+              className="inline-flex items-center px-3 py-1 rounded-full text-sm bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-gray-200"
             >
               {dish}
               <button
                 type="button"
                 onClick={() => handleRemove(index)}
-                className="ml-1.5 inline-flex items-center justify-center w-4 h-4 rounded-full hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                className="ml-1.5 inline-flex items-center justify-center w-4 h-4 rounded-full hover:bg-gray-300 dark:hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-indigo-500"
                 aria-label={`移除 ${dish}`}
               >
                 ×
@@ -78,7 +78,7 @@ export const DishInput: React.FC<DishInputProps> = ({ dishes, onChange }) => {
 
       {/* Input + Add button or limit message */}
       {isAtLimit ? (
-        <p className="text-sm text-amber-600">已達上限（最多 10 道）</p>
+        <p className="text-sm text-amber-600 dark:text-amber-400">已達上限（最多 10 道）</p>
       ) : (
         <div className="flex gap-2">
           <input
@@ -87,7 +87,7 @@ export const DishInput: React.FC<DishInputProps> = ({ dishes, onChange }) => {
             onChange={handleInputChange}
             onKeyDown={handleKeyDown}
             placeholder="輸入菜色名稱"
-            className="flex-1 border border-gray-300 rounded px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
+            className="flex-1 border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100 placeholder-gray-400 dark:placeholder-gray-500 rounded px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
             maxLength={MAX_DISH_LENGTH}
           />
           <button

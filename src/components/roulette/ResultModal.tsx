@@ -63,23 +63,23 @@ export const ResultModal = ({
     >
       <div
         ref={panelRef}
-        className="fixed bottom-0 left-0 right-0 bg-white rounded-t-2xl max-h-[90vh] overflow-y-auto md:static md:max-w-[560px] md:mx-auto md:mt-[10vh] md:rounded-2xl md:max-h-none"
+        className="fixed bottom-0 left-0 right-0 bg-white dark:bg-gray-800 rounded-t-2xl max-h-[90vh] overflow-y-auto md:static md:max-w-[560px] md:mx-auto md:mt-[10vh] md:rounded-2xl md:max-h-none"
       >
-        <div className="flex justify-center pt-3 pb-2 md:hidden"><div className="w-10 h-1 bg-gray-300 rounded-full" /></div>
+        <div className="flex justify-center pt-3 pb-2 md:hidden"><div className="w-10 h-1 bg-gray-300 dark:bg-gray-600 rounded-full" /></div>
         <div className="p-6 pb-24 md:pb-6 flex flex-col gap-4">
           {/* Restaurant Name */}
-          <h2 className="text-2xl font-bold text-gray-900">
+          <h2 className="text-2xl font-bold text-gray-900 dark:text-gray-100">
             {restaurant.name}
           </h2>
 
           {/* Status Badge */}
           <div>
             {restaurant.status === 'WISH_LIST' ? (
-              <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-yellow-100 text-yellow-800">
+              <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-yellow-100 text-yellow-800 dark:bg-yellow-900/30 dark:text-yellow-300">
                 想去
               </span>
             ) : (
-              <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">
+              <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-300">
                 去過
               </span>
             )}
@@ -91,8 +91,8 @@ export const ResultModal = ({
               {/* Rating */}
               {restaurant.rating !== null && (
                 <div className="flex items-center gap-2">
-                  <span className="text-sm text-gray-600">評分</span>
-                  <span className="text-amber-500 font-medium">
+                  <span className="text-sm text-gray-600 dark:text-gray-400">評分</span>
+                  <span className="text-amber-500 dark:text-amber-400 font-medium">
                     ★ {restaurant.rating}
                   </span>
                 </div>
@@ -101,8 +101,8 @@ export const ResultModal = ({
               {/* Average Cost */}
               {restaurant.avgCost !== null && (
                 <div className="flex items-center gap-2">
-                  <span className="text-sm text-gray-600">平均消費</span>
-                  <span className="font-medium text-gray-900">
+                  <span className="text-sm text-gray-600 dark:text-gray-400">平均消費</span>
+                  <span className="font-medium text-gray-900 dark:text-gray-100">
                     ${restaurant.avgCost}
                   </span>
                 </div>
@@ -111,12 +111,12 @@ export const ResultModal = ({
               {/* Recommended Dishes */}
               {restaurant.recommendedDishes.length > 0 && (
                 <div className="flex flex-col gap-1">
-                  <span className="text-sm text-gray-600">推薦菜色</span>
+                  <span className="text-sm text-gray-600 dark:text-gray-400">推薦菜色</span>
                   <div className="flex flex-wrap gap-1">
                     {restaurant.recommendedDishes.map((dish, index) => (
                       <span
                         key={index}
-                        className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-amber-100 text-amber-800"
+                        className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-amber-100 text-amber-800 dark:bg-amber-900/30 dark:text-amber-300"
                       >
                         {dish}
                       </span>
@@ -130,7 +130,7 @@ export const ResultModal = ({
           {/* Tags */}
           {restaurantTags.length > 0 && (
             <div className="flex flex-col gap-1">
-              <span className="text-sm text-gray-600">標籤</span>
+              <span className="text-sm text-gray-600 dark:text-gray-400">標籤</span>
               <TagList tags={restaurantTags} />
             </div>
           )}
@@ -138,8 +138,8 @@ export const ResultModal = ({
           {/* Notes */}
           {restaurant.notes && (
             <div className="flex flex-col gap-1">
-              <span className="text-sm text-gray-600">筆記</span>
-              <p className="text-sm text-gray-700 whitespace-pre-wrap">
+              <span className="text-sm text-gray-600 dark:text-gray-400">筆記</span>
+              <p className="text-sm text-gray-700 dark:text-gray-300 whitespace-pre-wrap">
                 {restaurant.notes}
               </p>
             </div>
@@ -150,7 +150,7 @@ export const ResultModal = ({
             <button
               type="button"
               onClick={onClose}
-              className="flex-1 px-4 py-2.5 rounded-lg border border-gray-300 text-gray-700 font-medium hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-gray-300"
+              className="flex-1 px-4 py-2.5 rounded-lg border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-200 font-medium hover:bg-gray-50 dark:hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-300"
             >
               關閉
             </button>

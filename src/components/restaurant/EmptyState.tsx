@@ -8,10 +8,10 @@ export function EmptyState({ onAdd }: EmptyStateProps) {
       <span className="text-5xl mb-4" role="img" aria-label="餐廳">
         🍽️
       </span>
-      <h2 className="text-lg font-semibold text-gray-700 mb-2">
+      <h2 className="text-lg font-semibold text-gray-700 dark:text-gray-200 mb-2">
         還沒有收藏任何餐廳
       </h2>
-      <p className="text-sm text-gray-500 mb-6">
+      <p className="text-sm text-gray-500 dark:text-gray-400 mb-6">
         點擊下方按鈕新增你的第一間餐廳吧！
       </p>
       <button

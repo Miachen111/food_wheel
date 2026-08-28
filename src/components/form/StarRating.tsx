@@ -52,7 +52,7 @@ function StarRating({ value, onChange }: StarRatingProps) {
         })}
       </div>
       {value !== null && (
-        <span className="ml-2 text-sm text-gray-600 font-medium min-w-[2rem]">
+        <span className="ml-2 text-sm text-gray-600 dark:text-gray-400 font-medium min-w-[2rem]">
           {value.toFixed(1)}
         </span>
       )}
@@ -103,7 +103,7 @@ function StarIcon({ fillType }: StarIconProps) {
 
   return (
     <svg
-      className="w-7 h-7 text-gray-300"
+      className="w-7 h-7 text-gray-300 dark:text-gray-600"
       viewBox="0 0 24 24"
       fill="currentColor"
       aria-hidden="true"

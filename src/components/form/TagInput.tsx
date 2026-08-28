@@ -127,7 +127,7 @@ export const TagInput: React.FC<TagInputProps> = ({
 
       {/* Input area */}
       {atLimit ? (
-        <p className="text-sm text-amber-600">已達標籤上限</p>
+        <p className="text-sm text-amber-600 dark:text-amber-400">已達標籤上限</p>
       ) : (
         <div className="relative">
           <div className="flex gap-2">
@@ -139,7 +139,7 @@ export const TagInput: React.FC<TagInputProps> = ({
               onKeyDown={handleKeyDown}
               onFocus={() => inputValue.trim() && setShowSuggestions(true)}
               placeholder="輸入標籤名稱..."
-              className="flex-1 rounded-md border border-gray-300 px-3 py-1.5 text-sm focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500"
+              className="flex-1 rounded-md border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100 placeholder-gray-400 dark:placeholder-gray-500 px-3 py-1.5 text-sm focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500"
               aria-label="標籤輸入"
             />
             <button
@@ -153,13 +153,13 @@ export const TagInput: React.FC<TagInputProps> = ({
 
           {/* Autocomplete suggestions */}
           {showSuggestions && filteredSuggestions.length > 0 && (
-            <ul className="absolute z-10 mt-1 w-full rounded-md border border-gray-200 bg-white shadow-lg max-h-40 overflow-y-auto">
+            <ul className="absolute z-10 mt-1 w-full rounded-md border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 shadow-lg max-h-40 overflow-y-auto">
               {filteredSuggestions.map((tag) => (
                 <li key={tag.id}>
                   <button
                     type="button"
                     onClick={() => handleSelectTag(tag)}
-                    className="w-full px-3 py-2 text-left text-sm hover:bg-indigo-50 focus:bg-indigo-50 focus:outline-none"
+                    className="w-full px-3 py-2 text-left text-sm text-gray-800 dark:text-gray-200 hover:bg-indigo-50 dark:hover:bg-gray-700 focus:bg-indigo-50 dark:focus:bg-gray-700 focus:outline-none"
                   >
                     {tag.name}
                   </button>

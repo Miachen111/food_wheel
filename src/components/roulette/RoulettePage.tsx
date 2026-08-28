@@ -80,11 +80,11 @@ export function RoulettePage() {
   return (
     <div className="flex flex-col gap-6">
       <div className="text-center">
-        <p className="text-lg font-medium text-gray-700">
+        <p className="text-lg font-medium text-gray-700 dark:text-gray-200">
           已選取 {candidates.length} 間餐廳
         </p>
         {candidates.length === 0 && (
-          <p className="text-sm text-gray-500 mt-2">
+          <p className="text-sm text-gray-500 dark:text-gray-400 mt-2">
             尚未勾選任何餐廳，請前往清單頁面勾選想加入轉盤的餐廳。
           </p>
         )}

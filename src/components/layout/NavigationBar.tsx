@@ -18,7 +18,7 @@ export function NavigationBar() {
 
   return (
     <nav
-      className={`fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 shadow-lg z-50 ${
+      className={`fixed bottom-0 left-0 right-0 bg-white dark:bg-gray-800 border-t border-gray-200 dark:border-gray-700 shadow-lg z-50 ${
         isDisabled ? 'pointer-events-none opacity-50' : ''
       }`}
       aria-label="主要導航"
@@ -30,8 +30,8 @@ export function NavigationBar() {
           onClick={() => handleNavigate('list')}
           className={`flex flex-col items-center justify-center min-w-[44px] min-h-[44px] px-2 py-1 transition-colors duration-300 ${
             currentPage === 'list'
-              ? 'text-indigo-600 border-t-2 border-indigo-600'
-              : 'text-gray-500'
+              ? 'text-indigo-600 dark:text-indigo-400 border-t-2 border-indigo-600 dark:border-indigo-400'
+              : 'text-gray-500 dark:text-gray-400'
           }`}
           aria-current={currentPage === 'list' ? 'page' : undefined}
           aria-label="餐廳清單"
@@ -48,8 +48,8 @@ export function NavigationBar() {
           onClick={() => handleNavigate('roulette')}
           className={`flex flex-col items-center justify-center min-w-[44px] min-h-[44px] px-2 py-1 transition-colors duration-300 ${
             currentPage === 'roulette'
-              ? 'text-indigo-600 border-t-2 border-indigo-600'
-              : 'text-gray-500'
+              ? 'text-indigo-600 dark:text-indigo-400 border-t-2 border-indigo-600 dark:border-indigo-400'
+              : 'text-gray-500 dark:text-gray-400'
           }`}
           aria-current={currentPage === 'roulette' ? 'page' : undefined}
           aria-label="美食轉盤"
@@ -67,8 +67,8 @@ export function NavigationBar() {
           onClick={() => handleNavigate('calories')}
           className={`flex flex-col items-center justify-center min-w-[44px] min-h-[44px] px-2 py-1 transition-colors duration-300 ${
             currentPage === 'calories'
-              ? 'text-indigo-600 border-t-2 border-indigo-600'
-              : 'text-gray-500'
+              ? 'text-indigo-600 dark:text-indigo-400 border-t-2 border-indigo-600 dark:border-indigo-400'
+              : 'text-gray-500 dark:text-gray-400'
           }`}
           aria-current={currentPage === 'calories' ? 'page' : undefined}
           aria-label="熱量計算"
@@ -86,8 +86,8 @@ export function NavigationBar() {
           onClick={() => handleNavigate('chat')}
           className={`flex flex-col items-center justify-center min-w-[44px] min-h-[44px] px-2 py-1 transition-colors duration-300 ${
             currentPage === 'chat'
-              ? 'text-indigo-600 border-t-2 border-indigo-600'
-              : 'text-gray-500'
+              ? 'text-indigo-600 dark:text-indigo-400 border-t-2 border-indigo-600 dark:border-indigo-400'
+              : 'text-gray-500 dark:text-gray-400'
           }`}
           aria-current={currentPage === 'chat' ? 'page' : undefined}
           aria-label="AI 助手"

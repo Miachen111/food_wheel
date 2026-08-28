@@ -155,26 +155,26 @@ export function ReviewForm({
 
   return (
     <div className="fixed inset-0 z-50 bg-black/50">
-      <div className="fixed bottom-0 left-0 right-0 h-[100dvh] bg-white rounded-t-2xl overflow-y-auto md:static md:max-w-[512px] md:mx-auto md:mt-8 md:h-auto md:max-h-[90vh] md:rounded-2xl md:shadow-xl">
-        <div className="flex justify-center pt-3 pb-2 sticky top-0 bg-white z-10 md:hidden"><div className="w-10 h-1 bg-gray-300 rounded-full" /></div>
+      <div className="fixed bottom-0 left-0 right-0 h-[100dvh] bg-white dark:bg-gray-800 rounded-t-2xl overflow-y-auto md:static md:max-w-[512px] md:mx-auto md:mt-8 md:h-auto md:max-h-[90vh] md:rounded-2xl md:shadow-xl">
+        <div className="flex justify-center pt-3 pb-2 sticky top-0 bg-white dark:bg-gray-800 z-10 md:hidden"><div className="w-10 h-1 bg-gray-300 dark:bg-gray-600 rounded-full" /></div>
         <form onSubmit={handleSubmit} className="p-5 sm:p-6 space-y-4">
           {/* Form title */}
-          <h2 className="text-xl font-bold text-gray-900">
+          <h2 className="text-xl font-bold text-gray-900 dark:text-gray-100">
             {mode === 'create' ? '新增餐廳' : '編輯餐廳'}
           </h2>
 
           {/* Google Places search */}
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">
-              搜尋餐廳 <span className="text-xs text-gray-400">(可選)</span>
+            <label className="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-1">
+              搜尋餐廳 <span className="text-xs text-gray-400 dark:text-gray-500">(可選)</span>
             </label>
             <PlaceSearch onPlaceSelect={handlePlaceSelect} />
-            <p className="mt-1 text-xs text-gray-400">搜尋後會自動填入名稱和評分，也可以直接手動輸入</p>
+            <p className="mt-1 text-xs text-gray-400 dark:text-gray-500">搜尋後會自動填入名稱和評分，也可以直接手動輸入</p>
           </div>
 
           {/* Name field */}
           <div>
-            <label htmlFor="restaurant-name" className="block text-sm font-medium text-gray-700 mb-1">
+            <label htmlFor="restaurant-name" className="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-1">
               餐廳名稱 <span className="text-red-500">*</span>
             </label>
             <input
@@ -185,8 +185,8 @@ export function ReviewForm({
               onBlur={handleNameBlur}
               maxLength={100}
               placeholder="輸入餐廳名稱"
-              className={`w-full border rounded-md px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 ${
-                errors.name ? 'border-red-500' : 'border-gray-300'
+              className={`w-full border rounded-md px-3 py-2 text-sm bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100 placeholder-gray-400 dark:placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 ${
+                errors.name ? 'border-red-500' : 'border-gray-300 dark:border-gray-700'
               }`}
             />
             {errors.name && (
@@ -196,7 +196,7 @@ export function ReviewForm({
 
           {/* Address field */}
           <div>
-            <label htmlFor="restaurant-address" className="block text-sm font-medium text-gray-700 mb-1">
+            <label htmlFor="restaurant-address" className="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-1">
               地址
             </label>
             <input
@@ -205,14 +205,14 @@ export function ReviewForm({
               value={address}
               onChange={(e) => setAddress(e.target.value)}
               placeholder="例：台北市大安區忠孝東路四段..."
-              className="w-full border border-gray-300 rounded-md px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
+              className="w-full border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100 placeholder-gray-400 dark:placeholder-gray-500 rounded-md px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
             />
-            <p className="mt-1 text-xs text-gray-400">從 Google Maps 搜尋會自動帶入，也可手動輸入</p>
+            <p className="mt-1 text-xs text-gray-400 dark:text-gray-500">從 Google Maps 搜尋會自動帶入，也可手動輸入</p>
           </div>
 
           {/* Status toggle */}
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">造訪狀態</label>
+            <label className="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-1">造訪狀態</label>
             <div className="flex gap-2">
               <button
                 type="button"
@@ -220,7 +220,7 @@ export function ReviewForm({
                 className={`flex-1 px-4 py-2 rounded-md text-sm font-medium min-h-[44px] transition-colors ${
                   status === 'VISITED'
                     ? 'bg-indigo-600 text-white'
-                    : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                    : 'bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-200 hover:bg-gray-200 dark:hover:bg-gray-600'
                 }`}
               >
                 已造訪
@@ -231,7 +231,7 @@ export function ReviewForm({
                 className={`flex-1 px-4 py-2 rounded-md text-sm font-medium min-h-[44px] transition-colors ${
                   status === 'WISH_LIST'
                     ? 'bg-amber-500 text-white'
-                    : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                    : 'bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-200 hover:bg-gray-200 dark:hover:bg-gray-600'
                 }`}
               >
                 想去清單
@@ -242,7 +242,7 @@ export function ReviewForm({
           {/* Budget level selector - shown only when WISH_LIST */}
           {isWishList && (
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">預算等級</label>
+              <label className="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-1">預算等級</label>
               <div className="flex gap-2">
                 {(['$', '$$', '$$$', '$$$$'] as const).map((level) => (
                   <button
@@ -254,21 +254,21 @@ export function ReviewForm({
                     className={`flex-1 px-3 py-2 rounded-md text-sm font-medium min-h-[44px] transition-colors ${
                       budgetLevel === level
                         ? 'bg-amber-500 text-white'
-                        : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                        : 'bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-200 hover:bg-gray-200 dark:hover:bg-gray-600'
                     }`}
                   >
                     {level}
                   </button>
                 ))}
               </div>
-              <p className="mt-1 text-xs text-gray-400">從 Google 帶入，也可手動調整</p>
+              <p className="mt-1 text-xs text-gray-400 dark:text-gray-500">從 Google 帶入，也可手動調整</p>
             </div>
           )}
 
           {/* Rating - hidden when WISH_LIST */}
           {!isWishList && (
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">個人評分</label>
+              <label className="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-1">個人評分</label>
               <StarRating value={rating} onChange={setRating} />
             </div>
           )}
@@ -276,11 +276,11 @@ export function ReviewForm({
           {/* Avg Cost - hidden when WISH_LIST */}
           {!isWishList && (
             <div>
-              <label htmlFor="avg-cost" className="block text-sm font-medium text-gray-700 mb-1">
+              <label htmlFor="avg-cost" className="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-1">
                 平均每人消費
               </label>
               <div className="relative">
-                <span className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-500 text-sm">$</span>
+                <span className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-500 dark:text-gray-400 text-sm">$</span>
                 <input
                   id="avg-cost"
                   type="number"
@@ -290,8 +290,8 @@ export function ReviewForm({
                   min={1}
                   max={99999}
                   placeholder="0"
-                  className={`w-full border rounded-md pl-7 pr-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 ${
-                    errors.avgCost ? 'border-red-500' : 'border-gray-300'
+                  className={`w-full border rounded-md pl-7 pr-3 py-2 text-sm bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100 placeholder-gray-400 dark:placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 ${
+                    errors.avgCost ? 'border-red-500' : 'border-gray-300 dark:border-gray-700'
                   }`}
                 />
               </div>
@@ -308,7 +308,7 @@ export function ReviewForm({
 
           {/* Tags */}
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">標籤</label>
+            <label className="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-1">標籤</label>
             <TagInput
               tags={tagIds}
               allTags={allTags}
@@ -319,7 +319,7 @@ export function ReviewForm({
 
           {/* Notes */}
           <div>
-            <label htmlFor="notes" className="block text-sm font-medium text-gray-700 mb-1">
+            <label htmlFor="notes" className="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-1">
               個人筆記
             </label>
             <textarea
@@ -333,8 +333,8 @@ export function ReviewForm({
               onBlur={handleNotesBlur}
               rows={3}
               placeholder="記錄你的用餐心得..."
-              className={`w-full border rounded-md px-3 py-2 text-sm resize-none focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 ${
-                errors.notes ? 'border-red-500' : 'border-gray-300'
+              className={`w-full border rounded-md px-3 py-2 text-sm resize-none bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100 placeholder-gray-400 dark:placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 ${
+                errors.notes ? 'border-red-500' : 'border-gray-300 dark:border-gray-700'
               }`}
             />
             <div className="flex justify-between mt-1">
@@ -343,7 +343,7 @@ export function ReviewForm({
               ) : (
                 <span />
               )}
-              <span className={`text-xs ${notes.length > 450 ? 'text-amber-600' : 'text-gray-400'}`}>
+              <span className={`text-xs ${notes.length > 450 ? 'text-amber-600 dark:text-amber-400' : 'text-gray-400 dark:text-gray-500'}`}>
                 {notes.length}/500
               </span>
             </div>
@@ -354,7 +354,7 @@ export function ReviewForm({
             <button
               type="button"
               onClick={onCancel}
-              className="flex-1 px-4 py-2 rounded-md text-sm font-medium border border-gray-300 text-gray-700 hover:bg-gray-50 min-h-[44px] transition-colors"
+              className="flex-1 px-4 py-2 rounded-md text-sm font-medium border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-700 min-h-[44px] transition-colors"
             >
               取消
             </button>

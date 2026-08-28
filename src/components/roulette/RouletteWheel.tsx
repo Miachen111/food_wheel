@@ -40,6 +40,18 @@ export default function RouletteWheel({
   const containerRef = useRef<HTMLDivElement>(null);
 
   const draw = useCallback(() => {
+    const isDark =
+      typeof window !== 'undefined' &&
+      window.matchMedia('(prefers-color-scheme: dark)').matches;
+
+    // Neutral colors that adapt to color scheme
+    const emptyBg = isDark ? '#374151' : '#e5e7eb';
+    const emptyText = isDark ? '#9ca3af' : '#6b7280';
+    const sectorBorder = isDark ? '#1f2937' : '#ffffff';
+    const sectorText = isDark ? '#f9fafb' : '#1f2937';
+    const centerFill = isDark ? '#1f2937' : '#ffffff';
+    const centerStroke = isDark ? '#4b5563' : '#d1d5db';
+
     const canvas = canvasRef.current;
     const container = containerRef.current;
     if (!canvas || !container) return;
@@ -66,11 +78,11 @@ export default function RouletteWheel({
     if (count === 0) {
       // Draw empty state
       ctx.clearRect(0, 0, size, size);
-      ctx.fillStyle = '#e5e7eb';
+      ctx.fillStyle = emptyBg;
       ctx.beginPath();
       ctx.arc(centerX, centerY, radius, 0, 2 * Math.PI);
       ctx.fill();
-      ctx.fillStyle = '#6b7280';
+      ctx.fillStyle = emptyText;
       ctx.font = '16px sans-serif';
       ctx.textAlign = 'center';
       ctx.textBaseline = 'middle';
@@ -97,7 +109,7 @@ export default function RouletteWheel({
       ctx.fill();
 
       // Draw sector border
-      ctx.strokeStyle = '#ffffff';
+      ctx.strokeStyle = sectorBorder;
       ctx.lineWidth = 2;
       ctx.stroke();
 
@@ -107,7 +119,7 @@ export default function RouletteWheel({
       ctx.rotate(startAngle + sectorAngle / 2);
       ctx.textAlign = 'right';
       ctx.textBaseline = 'middle';
-      ctx.fillStyle = '#1f2937';
+      ctx.fillStyle = sectorText;
       ctx.font = `bold ${Math.max(12, Math.min(14, radius / 10))}px sans-serif`;
 
       const candidate = candidates[i];
@@ -121,9 +133,9 @@ export default function RouletteWheel({
     // Draw center circle
     ctx.beginPath();
     ctx.arc(centerX, centerY, radius * 0.12, 0, 2 * Math.PI);
-    ctx.fillStyle = '#ffffff';
+    ctx.fillStyle = centerFill;
     ctx.fill();
-    ctx.strokeStyle = '#d1d5db';
+    ctx.strokeStyle = centerStroke;
     ctx.lineWidth = 2;
     ctx.stroke();
 
@@ -144,6 +156,16 @@ export default function RouletteWheel({
   // Redraw when candidates or angle changes
   useEffect(() => {
     draw();
+  }, [draw]);
+
+  // Redraw when the OS color scheme changes (media dark mode)
+  useEffect(() => {
+    const mql = window.matchMedia('(prefers-color-scheme: dark)');
+    const handleChange = () => draw();
+    mql.addEventListener('change', handleChange);
+    return () => {
+      mql.removeEventListener('change', handleChange);
+    };
   }, [draw]);
 
   // ResizeObserver for responsive behavior
