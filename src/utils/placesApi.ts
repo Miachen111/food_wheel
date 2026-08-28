@@ -1,3 +1,5 @@
+import type { BudgetLevel } from '../types';
+
 const SUPABASE_URL = (import.meta.env.VITE_SUPABASE_URL || '').trim();
 const SUPABASE_ANON_KEY = (import.meta.env.VITE_SUPABASE_ANON_KEY || '').trim();
 const FUNCTION_URL = `${SUPABASE_URL}/functions/v1/places-proxy`;
@@ -77,6 +79,22 @@ export function extractDistrict(addressComponents: AddressComponent[]): string |
   }
 
   return null;
+}
+
+const PRICE_LEVEL_MAP: Record<string, BudgetLevel> = {
+  PRICE_LEVEL_INEXPENSIVE: '$',
+  PRICE_LEVEL_MODERATE: '$$',
+  PRICE_LEVEL_EXPENSIVE: '$$$',
+  PRICE_LEVEL_VERY_EXPENSIVE: '$$$$',
+};
+
+/**
+ * 將 Google Places 價位列舉字串對應為 BudgetLevel。
+ * null、未知字串或未定義列舉一律回傳 null（null-safe）。
+ */
+export function priceLevelToBudgetLevel(priceLevel: string | null): BudgetLevel | null {
+  if (priceLevel == null) return null;
+  return PRICE_LEVEL_MAP[priceLevel] ?? null;
 }
 
 async function callPlacesProxy(action: string, params: Record<string, unknown>): Promise<unknown> {

@@ -1,5 +1,5 @@
 import { useState, useRef } from 'react';
-import { searchPlaces, getPlaceDetails, getPhotoUrl } from '../../utils/placesApi';
+import { searchPlaces, getPlaceDetails, getPhotoUrl, priceLevelToBudgetLevel } from '../../utils/placesApi';
 import { useGeolocation } from '../../hooks/useGeolocation';
 import { useAppContext } from '../../context/AppContext';
 import type { PlacePrediction, PlaceDetails } from '../../utils/placesApi';
@@ -83,6 +83,7 @@ export function ExploreOverlay({ onClose }: ExploreOverlayProps) {
         status: 'WISH_LIST',
         rating: null,
         avgCost: null,
+        budgetLevel: priceLevelToBudgetLevel(selectedPlace.priceLevel),
         recommendedDishes: [],
         notes: '',
         tagIds: [],

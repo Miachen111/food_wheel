@@ -8,7 +8,8 @@ import {
   validateAvgCost,
   validateNotes,
 } from '../../utils/validationUtils';
-import type { Restaurant, RestaurantFormData, RestaurantStatus, Tag } from '../../types';
+import { priceLevelToBudgetLevel } from '../../utils/placesApi';
+import type { BudgetLevel, Restaurant, RestaurantFormData, RestaurantStatus, Tag } from '../../types';
 
 export interface ReviewFormProps {
   mode: 'create' | 'edit';
@@ -43,6 +44,9 @@ export function ReviewForm({
   const [recommendedDishes, setRecommendedDishes] = useState<string[]>(
     initialData?.recommendedDishes ?? []
   );
+  const [budgetLevel, setBudgetLevel] = useState<BudgetLevel | null>(
+    initialData?.budgetLevel ?? null
+  );
   const [tagIds, setTagIds] = useState<string[]>(initialData?.tagIds ?? []);
   const [notes, setNotes] = useState(initialData?.notes ?? '');
   const [errors, setErrors] = useState<FormErrors>({});
@@ -65,6 +69,9 @@ export function ReviewForm({
       setRecommendedDishes([]);
       // Clear related errors
       setErrors((prev) => ({ ...prev, avgCost: undefined }));
+    } else {
+      // VISITED uses avgCost as its budget source; clear the WISH_LIST budgetLevel
+      setBudgetLevel(null);
     }
   };
 
@@ -86,12 +93,23 @@ export function ReviewForm({
     setErrors((prev) => ({ ...prev, notes: result.valid ? undefined : result.error }));
   }, [notes]);
 
-  const handlePlaceSelect = (place: { name: string; address: string; rating: number | null; placeId: string }) => {
+  const handlePlaceSelect = (place: {
+    name: string;
+    address: string;
+    rating: number | null;
+    placeId: string;
+    priceLevel: string | null;
+  }) => {
     setName(place.name);
     setAddress(place.address);
     if (place.rating !== null) {
       // Round to nearest 0.5
       setRating(Math.round(place.rating * 2) / 2);
+    }
+    // Auto-fill budget level from Google price level; only override when mappable
+    const mapped = priceLevelToBudgetLevel(place.priceLevel);
+    if (mapped !== null) {
+      setBudgetLevel(mapped);
     }
     // Clear name error if present
     setErrors((prev) => ({ ...prev, name: undefined }));
@@ -121,6 +139,9 @@ export function ReviewForm({
       status,
       rating: status === 'WISH_LIST' ? null : rating,
       avgCost: status === 'WISH_LIST' ? null : parsedCost,
+      // WISH_LIST carries the user/auto-filled budgetLevel; VISITED derives it
+      // downstream in the reducer from avgCost, so leave it null here.
+      budgetLevel: status === 'WISH_LIST' ? budgetLevel : null,
       recommendedDishes: status === 'WISH_LIST' ? [] : recommendedDishes,
       notes: notes.trim(),
       tagIds,
@@ -217,6 +238,32 @@ export function ReviewForm({
               </button>
             </div>
           </div>
+
+          {/* Budget level selector - shown only when WISH_LIST */}
+          {isWishList && (
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-1">預算等級</label>
+              <div className="flex gap-2">
+                {(['$', '$$', '$$$', '$$$$'] as const).map((level) => (
+                  <button
+                    key={level}
+                    type="button"
+                    onClick={() =>
+                      setBudgetLevel((prev) => (prev === level ? null : level))
+                    }
+                    className={`flex-1 px-3 py-2 rounded-md text-sm font-medium min-h-[44px] transition-colors ${
+                      budgetLevel === level
+                        ? 'bg-amber-500 text-white'
+                        : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                    }`}
+                  >
+                    {level}
+                  </button>
+                ))}
+              </div>
+              <p className="mt-1 text-xs text-gray-400">從 Google 帶入，也可手動調整</p>
+            </div>
+          )}
 
           {/* Rating - hidden when WISH_LIST */}
           {!isWishList && (

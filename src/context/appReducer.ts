@@ -18,7 +18,9 @@ export function appReducer(state: AppState, action: AppAction): AppState {
         status: formData.status,
         rating: isWishList ? null : formData.rating,
         avgCost: isWishList ? null : formData.avgCost,
-        budgetLevel: isWishList ? null : deriveBudgetLevel(formData.avgCost),
+        budgetLevel: isWishList
+          ? (formData.budgetLevel ?? null)
+          : deriveBudgetLevel(formData.avgCost),
         recommendedDishes: isWishList ? [] : formData.recommendedDishes,
         notes: formData.notes,
         address: formData.address ?? '',
@@ -52,9 +54,10 @@ export function appReducer(state: AppState, action: AppAction): AppState {
           status: data.status,
           rating: statusChangedToWishList ? null : data.rating,
           avgCost: statusChangedToWishList ? null : data.avgCost,
-          budgetLevel: statusChangedToWishList
-            ? null
-            : deriveBudgetLevel(data.avgCost),
+          budgetLevel:
+            data.status === 'WISH_LIST'
+              ? (data.budgetLevel ?? null)
+              : deriveBudgetLevel(data.avgCost),
           recommendedDishes: statusChangedToWishList
             ? []
             : data.recommendedDishes,

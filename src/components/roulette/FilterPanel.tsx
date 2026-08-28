@@ -20,6 +20,7 @@ const BUDGET_OPTIONS: { value: BudgetFilter; label: string }[] = [
   { value: '$', label: '$' },
   { value: '$$', label: '$$' },
   { value: '$$$', label: '$$$' },
+  { value: '$$$$', label: '$$$$' },
 ];
 
 export const FilterPanel: React.FC<FilterPanelProps> = ({

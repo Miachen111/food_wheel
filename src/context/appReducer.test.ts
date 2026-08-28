@@ -103,6 +103,27 @@ describe('appReducer', () => {
       expect(added.recommendedDishes).toEqual([]);
     });
 
+    it('should preserve the provided budgetLevel for WISH_LIST (e.g. $$$$)', () => {
+      const state = createInitialState();
+      const formData: RestaurantFormData = {
+        name: '想去的高級店',
+        status: 'WISH_LIST',
+        rating: null,
+        avgCost: null,
+        budgetLevel: '$$$$',
+        recommendedDishes: [],
+        notes: '',
+        tagIds: [],
+      };
+
+      const result = appReducer(state, { type: 'ADD_RESTAURANT', payload: formData });
+
+      const added = result.restaurants[0]!;
+      expect(added.status).toBe('WISH_LIST');
+      expect(added.budgetLevel).toBe('$$$$');
+      expect(added.avgCost).toBeNull();
+    });
+
     it('should add new restaurant to the BEGINNING of the array', () => {
       const existing = createRestaurant({ id: 'existing-1', name: '舊餐廳' });
       const state = createInitialState({ restaurants: [existing] });
@@ -219,6 +240,40 @@ describe('appReducer', () => {
       const updated = result.restaurants[0]!;
       expect(updated.name).toBe('更新名稱');
       expect(updated.rating).toBeNull();
+      expect(updated.avgCost).toBeNull();
+    });
+
+    it('should preserve/update budgetLevel when editing an existing WISH_LIST restaurant', () => {
+      const existing = createRestaurant({
+        id: 'rest-1',
+        status: 'WISH_LIST',
+        rating: null,
+        avgCost: null,
+        budgetLevel: '$$',
+        recommendedDishes: [],
+      });
+      const state = createInitialState({ restaurants: [existing] });
+
+      const result = appReducer(state, {
+        type: 'UPDATE_RESTAURANT',
+        payload: {
+          id: 'rest-1',
+          data: {
+            name: '想去的店',
+            status: 'WISH_LIST',
+            rating: null,
+            avgCost: null,
+            budgetLevel: '$$$$',
+            recommendedDishes: [],
+            notes: '',
+            tagIds: [],
+          },
+        },
+      });
+
+      const updated = result.restaurants[0]!;
+      expect(updated.status).toBe('WISH_LIST');
+      expect(updated.budgetLevel).toBe('$$$$');
       expect(updated.avgCost).toBeNull();
     });
 

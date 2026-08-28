@@ -16,13 +16,13 @@ export function groupByStatus(restaurants: Restaurant[]): RestaurantGroup[] {
 }
 
 export function groupByBudget(restaurants: Restaurant[]): RestaurantGroup[] {
-  const buckets: Record<string, Restaurant[]> = { '$': [], '$$': [], '$$$': [], 'null': [] };
+  const buckets: Record<string, Restaurant[]> = { '$': [], '$$': [], '$$$': [], '$$$$': [], 'null': [] };
   for (const r of restaurants) {
     const key = r.budgetLevel ?? 'null';
     if (!buckets[key]) buckets[key] = [];
     buckets[key]!.push(r);
   }
-  const labels: Record<string, string> = { '$': '$', '$$': '$$', '$$$': '$$$', 'null': '未設定' };
+  const labels: Record<string, string> = { '$': '$', '$$': '$$', '$$$': '$$$', '$$$$': '$$$$', 'null': '未設定' };
   return Object.entries(buckets)
     .filter(([, list]) => list.length > 0)
     .map(([key, list]) => ({ key, label: labels[key] ?? key, restaurants: list }));

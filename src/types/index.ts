@@ -2,7 +2,7 @@
 
 export type RestaurantStatus = 'WISH_LIST' | 'VISITED';
 
-export type BudgetLevel = '$' | '$$' | '$$$';
+export type BudgetLevel = '$' | '$$' | '$$$' | '$$$$';
 
 export interface Tag {
   id: string;        // UUID v4
@@ -34,6 +34,7 @@ export interface RestaurantFormData {
   status: RestaurantStatus;
   rating: number | null;
   avgCost: number | null;
+  budgetLevel?: BudgetLevel | null;
   recommendedDishes: string[];
   notes: string;
   tagIds: string[];
@@ -51,7 +52,7 @@ export type GroupMode = 'status' | 'budget' | 'tag' | 'district';
 // === 篩選狀態 ===
 
 export type StatusFilter = 'ALL' | 'WISH_LIST' | 'VISITED';
-export type BudgetFilter = 'ALL' | '$' | '$$' | '$$$';
+export type BudgetFilter = 'ALL' | '$' | '$$' | '$$$' | '$$$$';
 
 export interface FilterState {
   status: StatusFilter;

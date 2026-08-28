@@ -7,6 +7,7 @@ interface PlaceResult {
   address: string;
   rating: number | null;
   placeId: string;
+  priceLevel: string | null;
 }
 
 interface PlaceSearchProps {
@@ -72,6 +73,7 @@ export function PlaceSearch({ onPlaceSelect }: PlaceSearchProps) {
         address: prediction.secondaryText,
         rating: null,
         placeId: prediction.placeId,
+        priceLevel: null,
       });
       setQuery(prediction.mainText);
     }

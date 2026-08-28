@@ -1,0 +1,253 @@
+{
+  "pbtResults": {},
+  "executionHistory": {
+    "1.1 擴充型別為四級預算並補上表單欄位": [
+      {
+        "executionId": "b8d142c6-e2b1-442b-9d80-55006e70e243",
+        "chatSessionId": "sess_59bc992e-e3ed-4002-b8ab-85afde8ed82b",
+        "timestamp": 1787910433873
+      },
+      {
+        "executionId": "b8d142c6-e2b1-442b-9d80-55006e70e243",
+        "chatSessionId": "sess_59bc992e-e3ed-4002-b8ab-85afde8ed82b",
+        "timestamp": 1787910442926
+      },
+      {
+        "executionId": "b8d142c6-e2b1-442b-9d80-55006e70e243",
+        "chatSessionId": "sess_59bc992e-e3ed-4002-b8ab-85afde8ed82b",
+        "timestamp": 1787910505189
+      }
+    ],
+    "2.1 於 `src/utils/placesApi.ts` 實作 `priceLevelToBudgetLevel`": [
+      {
+        "executionId": "b8d142c6-e2b1-442b-9d80-55006e70e243",
+        "chatSessionId": "sess_59bc992e-e3ed-4002-b8ab-85afde8ed82b",
+        "timestamp": 1787910433969
+      },
+      {
+        "executionId": "b8d142c6-e2b1-442b-9d80-55006e70e243",
+        "chatSessionId": "sess_59bc992e-e3ed-4002-b8ab-85afde8ed82b",
+        "timestamp": 1787910511967
+      },
+      {
+        "executionId": "b8d142c6-e2b1-442b-9d80-55006e70e243",
+        "chatSessionId": "sess_59bc992e-e3ed-4002-b8ab-85afde8ed82b",
+        "timestamp": 1787910643444
+      }
+    ],
+    "3.1 擴充 `PlaceResult` 型別並帶出 priceLevel": [
+      {
+        "executionId": "b8d142c6-e2b1-442b-9d80-55006e70e243",
+        "chatSessionId": "sess_59bc992e-e3ed-4002-b8ab-85afde8ed82b",
+        "timestamp": 1787910434021
+      },
+      {
+        "executionId": "b8d142c6-e2b1-442b-9d80-55006e70e243",
+        "chatSessionId": "sess_59bc992e-e3ed-4002-b8ab-85afde8ed82b",
+        "timestamp": 1787910648100
+      },
+      {
+        "executionId": "b8d142c6-e2b1-442b-9d80-55006e70e243",
+        "chatSessionId": "sess_59bc992e-e3ed-4002-b8ab-85afde8ed82b",
+        "timestamp": 1787910760497
+      }
+    ],
+    "4.1 新增 budgetLevel 狀態與地點選取自動帶入": [
+      {
+        "executionId": "b8d142c6-e2b1-442b-9d80-55006e70e243",
+        "chatSessionId": "sess_59bc992e-e3ed-4002-b8ab-85afde8ed82b",
+        "timestamp": 1787910434074
+      },
+      {
+        "executionId": "b8d142c6-e2b1-442b-9d80-55006e70e243",
+        "chatSessionId": "sess_59bc992e-e3ed-4002-b8ab-85afde8ed82b",
+        "timestamp": 1787910649541
+      },
+      {
+        "executionId": "b8d142c6-e2b1-442b-9d80-55006e70e243",
+        "chatSessionId": "sess_59bc992e-e3ed-4002-b8ab-85afde8ed82b",
+        "timestamp": 1787910758541
+      }
+    ],
+    "4.2 新增 WISH_LIST 四級預算選擇器 UI": [
+      {
+        "executionId": "b8d142c6-e2b1-442b-9d80-55006e70e243",
+        "chatSessionId": "sess_59bc992e-e3ed-4002-b8ab-85afde8ed82b",
+        "timestamp": 1787910434125
+      },
+      {
+        "executionId": "b8d142c6-e2b1-442b-9d80-55006e70e243",
+        "chatSessionId": "sess_59bc992e-e3ed-4002-b8ab-85afde8ed82b",
+        "timestamp": 1787910778440
+      },
+      {
+        "executionId": "b8d142c6-e2b1-442b-9d80-55006e70e243",
+        "chatSessionId": "sess_59bc992e-e3ed-4002-b8ab-85afde8ed82b",
+        "timestamp": 1787910847890
+      }
+    ],
+    "4.3 更新提交組裝邏輯": [
+      {
+        "executionId": "b8d142c6-e2b1-442b-9d80-55006e70e243",
+        "chatSessionId": "sess_59bc992e-e3ed-4002-b8ab-85afde8ed82b",
+        "timestamp": 1787910434180
+      },
+      {
+        "executionId": "b8d142c6-e2b1-442b-9d80-55006e70e243",
+        "chatSessionId": "sess_59bc992e-e3ed-4002-b8ab-85afde8ed82b",
+        "timestamp": 1787910851900
+      },
+      {
+        "executionId": "b8d142c6-e2b1-442b-9d80-55006e70e243",
+        "chatSessionId": "sess_59bc992e-e3ed-4002-b8ab-85afde8ed82b",
+        "timestamp": 1787911016098
+      }
+    ],
+    "5. Checkpoint - 確認型別、對應函式與表單流程": [
+      {
+        "executionId": "b8d142c6-e2b1-442b-9d80-55006e70e243",
+        "chatSessionId": "sess_59bc992e-e3ed-4002-b8ab-85afde8ed82b",
+        "timestamp": 1787910434230
+      },
+      {
+        "executionId": "b8d142c6-e2b1-442b-9d80-55006e70e243",
+        "chatSessionId": "sess_59bc992e-e3ed-4002-b8ab-85afde8ed82b",
+        "timestamp": 1787911021756
+      },
+      {
+        "executionId": "b8d142c6-e2b1-442b-9d80-55006e70e243",
+        "chatSessionId": "sess_59bc992e-e3ed-4002-b8ab-85afde8ed82b",
+        "timestamp": 1787911079277
+      }
+    ],
+    "6.1 實作雙狀態預算呈現": [
+      {
+        "executionId": "b8d142c6-e2b1-442b-9d80-55006e70e243",
+        "chatSessionId": "sess_59bc992e-e3ed-4002-b8ab-85afde8ed82b",
+        "timestamp": 1787910434281
+      },
+      {
+        "executionId": "b8d142c6-e2b1-442b-9d80-55006e70e243",
+        "chatSessionId": "sess_59bc992e-e3ed-4002-b8ab-85afde8ed82b",
+        "timestamp": 1787910650204
+      },
+      {
+        "executionId": "b8d142c6-e2b1-442b-9d80-55006e70e243",
+        "chatSessionId": "sess_59bc992e-e3ed-4002-b8ab-85afde8ed82b",
+        "timestamp": 1787910759490
+      }
+    ],
+    "7.1 新增 FilterPanel 第四級選項": [
+      {
+        "executionId": "b8d142c6-e2b1-442b-9d80-55006e70e243",
+        "chatSessionId": "sess_59bc992e-e3ed-4002-b8ab-85afde8ed82b",
+        "timestamp": 1787910434330
+      },
+      {
+        "executionId": "b8d142c6-e2b1-442b-9d80-55006e70e243",
+        "chatSessionId": "sess_59bc992e-e3ed-4002-b8ab-85afde8ed82b",
+        "timestamp": 1787910512916
+      },
+      {
+        "executionId": "b8d142c6-e2b1-442b-9d80-55006e70e243",
+        "chatSessionId": "sess_59bc992e-e3ed-4002-b8ab-85afde8ed82b",
+        "timestamp": 1787910642486
+      }
+    ],
+    "7.2 更新 groupByBudget 支援第四級": [
+      {
+        "executionId": "b8d142c6-e2b1-442b-9d80-55006e70e243",
+        "chatSessionId": "sess_59bc992e-e3ed-4002-b8ab-85afde8ed82b",
+        "timestamp": 1787910434408
+      },
+      {
+        "executionId": "b8d142c6-e2b1-442b-9d80-55006e70e243",
+        "chatSessionId": "sess_59bc992e-e3ed-4002-b8ab-85afde8ed82b",
+        "timestamp": 1787910513559
+      },
+      {
+        "executionId": "b8d142c6-e2b1-442b-9d80-55006e70e243",
+        "chatSessionId": "sess_59bc992e-e3ed-4002-b8ab-85afde8ed82b",
+        "timestamp": 1787910641104
+      }
+    ],
+    "9.1 新增遷移檔 `002_extend_budget_level.sql`": [
+      {
+        "executionId": "b8d142c6-e2b1-442b-9d80-55006e70e243",
+        "chatSessionId": "sess_59bc992e-e3ed-4002-b8ab-85afde8ed82b",
+        "timestamp": 1787910434466
+      },
+      {
+        "executionId": "b8d142c6-e2b1-442b-9d80-55006e70e243",
+        "chatSessionId": "sess_59bc992e-e3ed-4002-b8ab-85afde8ed82b",
+        "timestamp": 1787910443702
+      },
+      {
+        "executionId": "b8d142c6-e2b1-442b-9d80-55006e70e243",
+        "chatSessionId": "sess_59bc992e-e3ed-4002-b8ab-85afde8ed82b",
+        "timestamp": 1787910504168
+      }
+    ],
+    "10. Final checkpoint - 確認全部測試通過": [
+      {
+        "executionId": "b8d142c6-e2b1-442b-9d80-55006e70e243",
+        "chatSessionId": "sess_59bc992e-e3ed-4002-b8ab-85afde8ed82b",
+        "timestamp": 1787910434508
+      },
+      {
+        "executionId": "b8d142c6-e2b1-442b-9d80-55006e70e243",
+        "chatSessionId": "sess_59bc992e-e3ed-4002-b8ab-85afde8ed82b",
+        "timestamp": 1787911080347
+      }
+    ],
+    "9. 資料庫遷移允許四級預算": [
+      {
+        "executionId": "b8d142c6-e2b1-442b-9d80-55006e70e243",
+        "chatSessionId": "sess_59bc992e-e3ed-4002-b8ab-85afde8ed82b",
+        "timestamp": 1787910504241
+      }
+    ],
+    "1. 擴充型別與資料庫約束（基礎設定）": [
+      {
+        "executionId": "b8d142c6-e2b1-442b-9d80-55006e70e243",
+        "chatSessionId": "sess_59bc992e-e3ed-4002-b8ab-85afde8ed82b",
+        "timestamp": 1787910505237
+      }
+    ],
+    "7. 篩選與分組更新為四級": [
+      {
+        "executionId": "b8d142c6-e2b1-442b-9d80-55006e70e243",
+        "chatSessionId": "sess_59bc992e-e3ed-4002-b8ab-85afde8ed82b",
+        "timestamp": 1787910642561
+      }
+    ],
+    "2. 實作 Google 價位列舉對應函式": [
+      {
+        "executionId": "b8d142c6-e2b1-442b-9d80-55006e70e243",
+        "chatSessionId": "sess_59bc992e-e3ed-4002-b8ab-85afde8ed82b",
+        "timestamp": 1787910643517
+      }
+    ],
+    "6. RestaurantCard 預算顯示": [
+      {
+        "executionId": "b8d142c6-e2b1-442b-9d80-55006e70e243",
+        "chatSessionId": "sess_59bc992e-e3ed-4002-b8ab-85afde8ed82b",
+        "timestamp": 1787910759538
+      }
+    ],
+    "3. 於 PlaceSearch 串接 priceLevel": [
+      {
+        "executionId": "b8d142c6-e2b1-442b-9d80-55006e70e243",
+        "chatSessionId": "sess_59bc992e-e3ed-4002-b8ab-85afde8ed82b",
+        "timestamp": 1787910760555
+      }
+    ],
+    "4. ReviewForm 表單邏輯與 UI": [
+      {
+        "executionId": "b8d142c6-e2b1-442b-9d80-55006e70e243",
+        "chatSessionId": "sess_59bc992e-e3ed-4002-b8ab-85afde8ed82b",
+        "timestamp": 1787911016167
+      }
+    ]
+  }
+}

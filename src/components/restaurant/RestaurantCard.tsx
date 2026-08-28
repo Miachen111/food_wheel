@@ -41,6 +41,12 @@ export const RestaurantCard: React.FC<RestaurantCardProps> = ({
         <p className="text-xs text-gray-500 truncate mb-1">{restaurant.address}</p>
       )}
 
+      {restaurant.status === 'WISH_LIST' && restaurant.budgetLevel !== null && (
+        <div className="mb-2 text-sm text-gray-600">
+          <span>{restaurant.budgetLevel}</span>
+        </div>
+      )}
+
       {restaurant.status === 'VISITED' && (
         <div className="flex items-center gap-3 mb-2 text-sm text-gray-600">
           {restaurant.rating !== null && (
@@ -48,7 +54,7 @@ export const RestaurantCard: React.FC<RestaurantCardProps> = ({
               <span className="text-yellow-500">★</span> {restaurant.rating}
             </span>
           )}
-          {restaurant.avgCost !== null && <span>${restaurant.avgCost}</span>}
+          {restaurant.avgCost !== null && <span>NT${restaurant.avgCost}</span>}
         </div>
       )}
 
