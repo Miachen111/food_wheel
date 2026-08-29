@@ -1,3 +1,16 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* 讓背景色延伸到整個安全區域（含 iPhone 狀態列/瀏海下方），亮暗皆有底色，避免露白 */
+html,
+body {
+  background-color: #f9fafb; /* gray-50 */
+}
+
+@media (prefers-color-scheme: dark) {
+  html,
+  body {
+    background-color: #111827; /* gray-900 */
+  }
+}
